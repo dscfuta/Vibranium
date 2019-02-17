@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DSC - University Name</title>
+    <title>DSC - FUTA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="DSC University Name"/>
-    <meta name="description" content="Developer Student Clubs (DSC)a is a Google Developers program for university students to learn mobile and web development skills.">
-    <meta name="keywords" content="dsc, university name, kelvin kamau,google developers, sub saharan africa, kenya, computer science"/>
-
+    <meta name="author" content="DSC FUTA"/>
+    <meta name="description"
+          content="Developer Student Clubs (DSC)a is a Google Developers program for university students to learn mobile and web development skills.">
+    <meta name="keywords"
+          content="dsc, futa, kelvin kamau,google developers, sub saharan africa, kenya, computer science"/>
     <link href="css/ionicons.min.css" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2F5BE7"/>
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="css/responsive.css">
 
     <!-- Google Analytics -->
-    <script>
+    <!-- <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
@@ -39,14 +40,14 @@
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-124904500-1', 'auto');
         ga('send', 'pageview');
-    </script>
+    </script> -->
     <!-- End Google Analytics -->
 
 </head>
 
 <body class="x-hidden has-sticky-header">
 <nav class="navbar navbar-expand-lg fixed-top custom-menu custom-menu__light">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
             <img src="images/icon.png" height="40" alt="Image">
         </a>
@@ -62,7 +63,7 @@
         </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-lg-auto">
+            <ul class="navbar-nav ml-lg-auto mr-lg-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#overview">Overview
                         <span class="sr-only">(current)</span>
@@ -74,14 +75,22 @@
                 <li class="nav-item"><a href="#workshops" class="nav-link">Workshops</a></li>
                 <li class="nav-item"><a href="#team" class="nav-link">Team</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://medium.com/search?q=DSCUniversityName" target="_blank">Stories</a>
+                    <a class="nav-link" href="https://medium.com/@dscfuta" target="_blank" rel="noreferrer noopener">Stories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/learn/">Tutorials</a>
                 </li>
             </ul>
             <div class="custom-menu__right">
-                <a href="#" class="btn btn-primary btn-pills" target="_blank">Next Event</a>
+                <a href="https://meetup.com/dscfuta" class="btn btn-primary btn-pills" target="_blank" rel="noreferrer noopener">RSVP for
+                    Next Event</a>
             </div>
         </div>
     </div>
+    <!-- <i class="fas fa-bell notify vanish" title="Enable notifications"></i> -->
 </nav>
 
 <header id="hero" class="hero">
@@ -91,7 +100,7 @@
                 <div class="hero-content">
                     <div class="hero-title__group">
                         <div class="hero-title">
-                            <h2 class="zuri">Developer Student Club<br> University Name.</h2>
+                            <h2 class="zuri">Developer Student Club<br> FUTA.</h2>
                         </div>
                         <div class="Hero--Subtitle">
                             <p class="lead">Developer Student Clubs is a
@@ -103,12 +112,10 @@
                         </div>
                     </div>
                     <div class="hero-cta-group">
-                        <form id="mailform" class="hero-form cta__large">
-                            <div class="alert text-red">Thanks for joining our mailing list!!</div>
-                            <div class="input-group">
-                                <button type="submit" class="btn btn-secondary"><i class="fab fa-meetup"></i>&nbsp;Become a member</button>
-                            </div>
-                        </form>
+                        <div class="hero-form cta__large">
+                            <p><a href="https://meetup.com/dscfuta" target="_blank" class="btn btn-primary btn-lg">Join our Meetup page</i></a></p>
+                            <span class="assistive-text">* Get all the latest exciting community announcements delivered to your inbox.</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,7 +130,6 @@
 
 <section id="overview" class="section-spacer">
     <div class="container">
-
         <div class="row">
             <div class="col-md-4 col-12">
                 <div class="feature-card">
@@ -227,8 +233,21 @@
                             We always have sessions to keep you updated and mastering the latest trends in modern
                             Android development.</p>
                     </div>
-                    <a href="https://www.android.com" class="btn btn-primary btn-lg">Tutorials &nbsp;<i
-                            class="fas fa-caret-right"></i></a>
+                    <div class="d-flex flex-column flex-md-row align-items-center">
+                        <a
+                            href="https://developer.android.com"
+                            class="btn btn-primary btn-lg mb-3 mb-md-0 mr-md-3"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
+                            Learn More&nbsp;
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="/learn/#mobile" class="btn btn-primary btn-md">
+                            Deep Dive&nbsp;
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -236,7 +255,7 @@
 </section>
 <section class="section-spacer">
     <div class="container">
-        <div class="row flex-column-reverse flex-sm-row align-items-cengit ter">
+        <div class="row flex-column-reverse flex-sm-row align-items-center">
             <div class="col-sm-5 mr-auto">
                 <div class="feature-list-wrapper">
                     <div class="content-header">
@@ -247,14 +266,27 @@
                             coding experience.
                         </p>
                     </div>
-                    <a href="https://developers.google.com/web/" class="btn btn-primary btn-lg">Tutorials &nbsp;<i
-                            class="fas fa-caret-right"></i></a>
+                    <div class="d-flex flex-column flex-md-row align-items-center">
+                        <a
+                            href="https://developers.google.com/web/"
+                            class="btn btn-primary btn-lg mb-3 mb-md-0 mr-md-3"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
+                            Learn More&nbsp;
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="/learn/#web" class="btn btn-primary btn-md">
+                            Deep Dive&nbsp;
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="feature-list-image">
                     <img src="images/assets/technologies/web.png" class="img-fluid" alt="Image" height="60%"
-                         width="90%">
+                        width="90%">
                 </div>
             </div>
         </div>
@@ -276,8 +308,21 @@
                             innovation and prompt rise of cloud-native applications to
                             bridges gaps between data, insight, and action</p>
                     </div>
-                    <a href="https://developers.google.com/web/" class="btn btn-primary btn-lg">Tutorials &nbsp;<i
-                            class="fas fa-caret-right"></i></a>
+                    <div class="d-flex flex-column flex-md-row align-items-center">
+                        <a
+                            href="https://cloud.google.com"
+                            class="btn btn-primary btn-lg mb-3 mb-md-0 mr-md-3"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
+                            Learn More&nbsp;
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="/learn/#cloud" class="btn btn-primary btn-md">
+                            Deep Dive&nbsp;
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -285,24 +330,36 @@
 </section>
 <section class="section-spacer">
     <div class="container">
-        <div class="row flex-column-reverse flex-sm-row align-items-cengit ter">
+        <div class="row flex-column-reverse flex-sm-row align-items-center">
             <div class="col-sm-5 mr-auto">
                 <div class="feature-list-wrapper">
                     <div class="content-header">
-                        <h2 class="content-title">Machine Intelligence</h2>
-                        <p>Learn how to drive user engangement and retention with intelligent apps that are able to
-                            effectively serve
-                            users what they need without the fuss.
+                        <h2 class="content-title">Machine Learning / AI</h2>
+                        <p>Drive user engangement and retention with intelligent apps
+                           that are able to effectively serve users what they need
+                           without the fuss.
                         </p>
                     </div>
-                    <a href="https://developers.google.com/web/" class="btn btn-primary btn-lg">Tutorials &nbsp;<i
-                            class="fas fa-caret-right"></i></a>
+                </div>
+                <div class="d-flex flex-column flex-md-row align-items-center">
+                    <a
+                        href="https://ai.google/"
+                        class="btn btn-primary btn-lg mb-3 mb-md-0 mr-md-3"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        Learn More&nbsp;
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="/learn/#mlai" class="btn btn-primary btn-md">
+                        Deep Dive&nbsp;
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="feature-list-image">
-                    <img src="images/assets/technologies/mi.png" class="img-fluid" alt="Image" height="60%"
-                         width="90%">
+                    <img src="images/assets/technologies/mlai.svg" class="img-fluid" alt="Machine Learning / AI" width="90%">
                 </div>
             </div>
         </div>
@@ -326,115 +383,14 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="upcoming" role="tabpanel" aria-labelledby="upcoming">
-                <div class="row">
-                    <div class="col-md-4 col-12">
-                        <div class="card event-card">
-                            <img class="card-img-top" src="images/assets/events/fbw.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="tagging intermediate float-right">Intermediate</p>
-                                <h5 class="card-title">Firebase for Web</h5>
-                                <p class="card-text">
-                                    <strong>DATE :</strong> 16th Feb 2019<br>
-                                    <strong>VENUE :</strong>  LH 27, Main Campus<br>
-                                     <strong>TIME :</strong>  0900hrs - 1300hrs
-                                </p>
-                                <a href="https://www.meetup.com/GDG-Kisii/events/258288805/" class="btn btn-primary float-right">Attend</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-12">
-                        <div class="card event-card">
-                            <img class="card-img-top" src="images/assets/events/fba.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="tagging expert float-right">Expert</p>
-                                <h5 class="card-title">Firebase for Android</h5>
-                                <p class="card-text">
-                                    <strong>DATE :</strong> 23rd Feb 2019<br>
-                                    <strong>VENUE :</strong>  LH 27, Main Campus<br>
-                                    <strong>TIME :</strong>  0900hrs - 1300hrs
-                                </p>
-                                <a href="https://www.meetup.com/GDG-Kisii/events/258288819/" class="btn btn-primary float-right">Attend</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-12">
-                        <div class="card event-card">
-                            <img class="card-img-top" src="images/assets/events/rpj.png" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="tagging beginner float-right">Beginner</p>
-                                <h5 class="card-title">Raspberry Pi Jam</h5>
-                                <p class="card-text">
-                                    <strong>DATE :</strong> 2nd March 2019<br>
-                                    <strong>VENUE :</strong>  LH 27, Main Campus<br>
-                                    <strong>TIME :</strong>  0900hrs - 1300hrs
-                                </p>
-                                <a href="https://www.meetup.com/GDG-Kisii/events/258212444/" class="btn btn-primary float-right">Attend</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" id="upcomingEventsList">
+                    
                 </div>
             </div>
             <div class="tab-pane" id="past" role="tabpanel" aria-labelledby="past">
-
                 <section class="section-spacer">
-                    <div class="container">
-                        <div class="row flex-column-reverse flex-sm-row align-items-cengit ter">
-                            <div class="col-sm-5 mr-auto">
-                                <div class="feature-list-wrapper">
-                                    <div class="content-header">
-                                        <h2 class="content-title">The Magic Of Flutter</h2>
-                                        <hr>
-                                        <h6>DATE : 6<sup>th</sup> Aug 2018</h6>
-                                        <h6>VENUE : LH 1, Main Campus</h6>
-                                        <p>We concentrated on two parts of Flutter, that we admire most.</p>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-lg">Event
-                                        Pictures&nbsp;<i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="feature-list-image">
-                                    <!--<iframe class="vanish" src="https://docs.google.com/presentation/d/e/2PACX-1vQw37yOddaGU-XhgoHwubXadUTEgnxQ0iqT6eHbBssRnP8UzplK-vkdL_5aKl3aiTKVjMkNMC_fRCt3/embed?start=false&loop=true&delayms=5000"
-                                            frameborder="0" width="480" height="299" allowfullscreen="true"
-                                            mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="hi" class="section-spacer bg-very__gray">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-sm-6">
-                                <div class="feature-list-image">
-                                    <!--<iframe class="vanish" src="https://docs.google.com/presentation/d/e/2PACX-1vQcG84BsN5LAUmvkvEUwK2h1euvoW6PZaSl4CnJfybQx0xgB6XbQTECqo4H1M56axzqzDBqJpPVrbeL/embed?start=false&loop=true&delayms=30000"
-                                            frameborder="0" width="480" height="299" allowfullscreen="true"
-                                            mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>-->
-                                </div>
-                            </div>
-                            <div class="col-sm-5 ml-auto">
-                                <div class="feature-list-wrapper">
-                                    <div class="content-header">
-                                        <h2 class="content-title">Build Your First App</h2>
-                                        <hr>
-                                        <h6>DATE : 6<sup>th</sup> July 2018</h6>
-                                        <h6>VENUE : LH 1, Main Campus</h6>
-                                        <p>We set up the Android Application Development Environment for creating,
-                                            testing and debugging apps.</p>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-lg">Event Pictures&nbsp;&nbsp;<i
-                                            class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="section-spacer">
-                    <div class="container">
-                        <div class="row flex-column-reverse flex-sm-row align-items-cengit ter">
+                    <div class="container" id="pastEventsList">
+                        <div class="row flex-column-reverse flex-sm-row align-items-center">
                             <div class="col-sm-5 mr-auto">
                                 <div class="feature-list-wrapper">
                                     <div class="content-header">
@@ -453,7 +409,7 @@
                                 <div class="feature-list-image">
                                     <iframe class="vanish" width="500" height="274"
                                             src="https://www.youtube.com/embed/AAin71VkbzQ"
-                                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                            frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -464,155 +420,32 @@
     </div>
 </section>
 
+<section id="projects" class="section-spacer section-proj bg-very__gray">
+    <div class="container">
+        <header class="section-header text-center">
+            <h2 class="section-title">Projects</h2>
+        </header>
+        <div class="row" id="projectList">
+            
+        </div>
+    </div>
+</section>
+
 <section id="team" class="section-spacer bg-blue team-section">
     <div class="container">
         <header class="text-center section-header">
             <h2 class="section-title">Meet The DSC Team</h2>
             <span class="text-light">Passionate students and faculty staff driving the success of the program.</span>
         </header>
-        <div class="row flex-column-reverse flex-lg-row-reverse align-items-sm-center">
-            <div class="col-md-1">
+        <div class="row flex-column-reverse align-items-sm-center">
+            <div class="col-md-12">
                 <ul class="dots team-slider__indicators">
-                    <li class="owl-dot"></li>
-                    <li class="owl-dot"></li>
-                    <li class="owl-dot"></li>
-                    <li class="owl-dot"></li>
-                    <li class="owl-dot"></li>
+                    
                 </ul>
             </div>
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <div class="owl-carousel team-slider">
-
-                    <blockquote class="team-item">
-                        <div class="row align-items-center flex-column-reverse flex-md-row justify-content-sm-center">
-                            <div class="col-12 col-md-4">
-                                <div class="team-item__thumb">
-                                    <div class="team-item__image">
-                                        <img src="images/assets/team/avatar.png" alt="Image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="team-content">
-                                    <div class="team-item__context">
-                                        <p class="vanish"><i class="fab fa-twitter"></i> @twitterhandle</p>
-                                        <p class="vanish">A highly-motivated mobile and web developer with an acquired
-                                            taste for
-                                            elegant design, an open source hobbyist & a community mentor keen to inspire
-                                            change-makers.</p>
-                                    </div>
-                                    <div class="team-meta">
-                                        <h5>Name goes here</h5>
-                                        <p>Lead Organizer & 4th Year Student.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </blockquote>
-                    <blockquote class="team-item">
-                        <div class="row align-items-center flex-column-reverse flex-md-row justify-content-sm-center">
-                            <div class="col-12 col-md-4">
-                                <div class="team-item__thumb">
-                                    <div class="team-item__image">
-                                        <img src="images/assets/team/avatar.png" alt="Image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="team-content">
-                                    <div class="team-item__context">
-                                        <p class="vanish"><i class="fab fa-twitter"></i> @twitterhandle</p>
-                                        <p class="vanish">A highly-motivated mobile and web developer with an acquired
-                                            taste for
-                                            elegant design, an open source hobbyist & a community mentor keen to inspire
-                                            change-makers.</p>
-                                    </div>
-                                    <div class="team-meta">
-                                        <h5>Name goes here</h5>
-                                        <p>Assistant organizer & 3rd Year Student.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </blockquote>
-                    <blockquote class="team-item">
-                        <div class="row align-items-center flex-column-reverse flex-md-row justify-content-sm-center">
-                            <div class="col-12 col-md-4">
-                                <div class="team-item__thumb">
-                                    <div class="team-item__image">
-                                        <img src="images/assets/team/avatar.png" alt="Image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="team-content">
-                                    <div class="team-item__context">
-                                        <p class="vanish"><i class="fab fa-twitter"></i> @twitterhandle</p>
-                                        <p class="vanish">A highly-motivated mobile and web developer with an acquired
-                                            taste for
-                                            elegant design, an open source hobbyist & a community mentor keen to inspire
-                                            change-makers.</p>
-                                    </div>
-                                    <div class="team-meta">
-                                        <h5>Name goes here</h5>
-                                        <p>Co-organizer & 1st Year Student.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </blockquote>
-                    <blockquote class="team-item ">
-                        <div class="row align-items-center flex-column-reverse flex-md-row justify-content-sm-center">
-                            <div class="col-12 col-md-4">
-                                <div class="team-item__thumb">
-                                    <div class="team-item__image">
-                                        <img src="images/assets/team/avatar.png" alt="Image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="team-content">
-                                    <div class="team-item__context">
-                                        <p class="vanish"><i class="fab fa-twitter"></i> @twitterhandle</p>
-                                        <p class="vanish">My areas of specialization include:- Concurrency
-                                            control,Bioinformatics, ICT
-                                            integration,knowledge based systems, IoT and e-learning.</p>
-                                    </div>
-                                    <div class="team-meta">
-                                        <h5>Name goes here</h5>
-                                        <p>Volunteer & 2nd Year Student.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </blockquote>
-
-                    <blockquote class="team-item">
-                        <div class="row align-items-center flex-column-reverse flex-md-row justify-content-sm-center">
-                            <div class="col-12 col-md-4">
-                                <div class="team-item__thumb">
-                                    <div class="team-item__image">
-                                        <img src="images/assets/team/avatar.png" alt="Image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="team-content">
-                                    <div class="team-item__context">
-                                        <p class="vanish"><i class="fab fa-twitter"></i> @twitterhandle</p>
-                                        <p class="vanish">Learning how to code has given me problem-solving skills and a
-                                            way to communicate with others on a technical level. I am learning how to solve
-                                            using different programming languages and such. I love reading extensively.
-                                            Interact with different people and share experiences.</p>
-                                    </div>
-                                    <div class="team-meta">
-                                        <h5>Name goes here</h5>
-                                        <p>DSC Faculty Adviser</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </blockquote>
+                    
                 </div>
             </div>
         </div>
@@ -638,9 +471,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">How frequently do events and workshops occur?</h5>
-                        <p>We have a hands-on session every Tuesday at LH1 from 1800hrs to 2030hrs. We also hold
-                            workshops and showcases & we would recommend you to join our community on <a
-                                    href="#">Meetup</a> to get updates.</p>
+                        <p>We have a hands-on session every Friday &amp; Saturday at CSC Classroom behind 1000LT from 10:00AM to 03:30PM. We also hold
+                            workshops and showcases & we would recommend you to join our community on 
+                            <a href="https://meetup.com/dscfuta" target="_blank" rel="noreferrer noopener">Meetup</a> to get updates.</p>
                     </div>
                 </div>
             </div>
@@ -666,8 +499,15 @@
                 </div>
             </div>
         </div>
+        <div class="mt-40 text-center">
+            <a href="mailto:dscfuta@gmail.com" class="btn btn-primary btn-lg">Send us an email</a>
+        </div>
     </div>
 </section>
+
+
+
+
 
 <footer class="section-spacer footer-section">
     <div class="container">
@@ -677,25 +517,25 @@
                     <img src="images/footer-logo.png" class="logo-sm mb-10" alt="Image">
                     <p>Copyright &copy; 2019. All Rights Reserved.</p>
                     <span>Feel free to drop us an email at </span>
-                    <a href="mailto:team@dsc.scuniversityname.org">team@dscuniversityname.org</a>
+                    <a href="mailto:dscfuta@gmail.com">dscfuta@gmail.com</a>
                     <ul class="social-list__inline mt-10">
                         <li>
-                            <a href="https://twitter.com/DSCUniversityName">
+                            <a href="https://twitter.com/dscfuta" target="_blank" rel="noreferrer noopener">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/DSCUniversityName">
+                            <a href="https://github.com/dscfuta" target="_blank" rel="noreferrer noopener">
                                 <i class="fab fa-github"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                <i class="fab fa-slack"></i>
+                            <a href="https://developers.google.com/programs/dsc/" target="_blank" rel="noreferrer noopener">
+                                <i class="fab fa-google"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/user/GoogleDevelopers">
+                            <a href="https://www.youtube.com/channel/UCtpTYLuusEy-c6yDt0iH7WQ" target="_blank" rel="noreferrer noopener">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </li>
@@ -703,7 +543,7 @@
                 </div>
             </div>
             <div class="col-md-8 col-sm-10">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-md-4 col-6">
                         <div class="footer-widget">
                             <h4 class="footer-widget__title">Programs</h4>
@@ -715,7 +555,10 @@
                                     <a href="https://developers.google.com/experts/" target="_blank" rel="noopener noreferrer">Google Developer Experts</a>
                                 </li>
                                 <li>
-                                    <a href="https://developers.google.com" target="_blank" rel="noopener noreferrer">Google Developer Groups</a>
+                                    <a href="https://developers.google.com/experts/">Google Developer Experts</a>
+                                </li>
+                                <li>
+                                    <a href="https://developers.google.com/programs/community/gdg/">Google Developer Groups</a>
                                 </li>
                             </ul>
                         </div>
@@ -726,27 +569,17 @@
                             <ul>
                                 <li class="list-unstyled">
                                 <li>
-                                    <a href="https://github.com/DSCUniversityName" target="_blank" rel="noopener noreferrer">Partner</a>
+                                    <a href="https://flutter.io/">Learn Flutter</a>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/DSCLEADSAfrica" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    <a href="https://www.youtube.com/user/GoogleDevelopers">Devs Playlist</a>
                                 </li>
                                 <li>
                                     <a href="https://developer.android.com/dev-summit/community-guidelines/" target="_blank" rel="noopener noreferrer">Code of
                                         conduct</a>
                                 </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="footer-widget">
-                            <h4 class="footer-widget__title">Contribute</h4>
-                            <ul class="list-unstyled">
                                 <li>
-                                    <a href="https://github.com/kelvinkamau/Vibranium/issues/new?template=documentation-bug.md" target="_blank" rel="noopener noreferrer">File a bug</a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/kelvinkamau/Vibranium" target="_blank" rel="noopener noreferrer">View source</a>
+                                    <a href="https://developers.googleblog.com/">Blog</a>
                                 </li>
                             </ul>
                         </div>
@@ -757,8 +590,7 @@
     </div>
 </footer>
 <a href="#" id="scroll" style="display: none;"><i class="fas fa-angle-up"></i></a>
-<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
-<script src="js/formfire.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script> -->
 <script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
@@ -770,12 +602,138 @@
         );
     }
 </script>
+<script type="text/x-handlebars-template" id="events-template">
+    {{#events}}
+    <div class="col-md-4">
+        <div class="workshops-single">
+            <div class="workshops-header">
+                <div class="workshops-price">
+                    <div class="workshops-value">
+                        {{name}}
+                        <hr>
+                    </div>
+                    <h6>DATE : {{date}}
+                    <h6>VENUE : {{venue}}</h6>
+                    <h6>TIME : {{time}}</h6>
+                </div>
+            </div>
+            <div class="workshops-footer">
+                <a href="{{meetupURL}}" class="btn btn-primary">RSVP NOW</a>
+            </div>
+        </div>
+    </div>
+    {{/events}}
+</script>
+<script type="text/x-handlebars-template" id="past-events-template">
+    {{#events}}
+    <div class="row flex-column-reverse flex-sm-row align-items-center mb-5">
+        <div class="col-sm-5 mr-auto">
+            <div class="feature-list-wrapper">
+                <div class="content-header">
+                    <h2 class="content-title">{{name}}</h2>
+                    <hr>
+                    <h6>DATE : {{date}}</h6>
+                    <h6>WHERE : {{venue}}</h6>
+                    <p>{{description}}</p>
+                </div>
+                {{#if photosURL}}
+                <a href="{{photosURL}}" class="btn btn-primary btn-lg">Event
+                    Pictures&nbsp;<i class="fas fa-arrow-right"></i></a>
+                {{/if}}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="feature-list-image">
+                {{#if youtubeURL}}
+                <iframe class="vanish" width="500" height="274"
+                        src="{{youtubeURL}}"
+                        frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    {{/events}}
+</script>
+<script type="text/x-handlebars-template" id="spinner-template">
+    <div class="spinner-wrapper">
+      <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </div>
+  </script>
+<script type="text/x-handlebars-template" id="error-message-template">
+    <div class="message-wrapper">
+        <h1 class="message-icon">:(</h1>
+        <h2 class="message-text">{{error}}</h2>
+    </div>
+</script>
+<script type="text/x-handlebars-template" id="team-item-template">
+    {{#instructors}}
+    <blockquote class="team-item">
+        <div class="row align-items-center flex-column-reverse flex-md-row justify-content-sm-center">
+            <div class="col-12 col-md-4">
+                <div class="team-item__thumb">
+                    <div class="team-item__image" style="{{imageCSS}}"></div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="team-content">
+                    <div class="team-item__context">
+                        <p>
+                            <a href="https://twitter.com/{{twitterID}}"><i class="fab fa-twitter"></i> @{{twitterID}}</a>
+                            &nbsp;
+                            <a href="https://github.com/{{githubID}}"><i class="fab fa-github"></i> @{{githubID}}</a>
+                        </p>
+                        <p class="vanish">{{bio}}</p>
+                    </div>
+                    <div class="team-meta">
+                        <h5>{{name}}</h5>
+                        <p>{{role}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </blockquote>
+    {{/instructors}}
+</script>
+<script type="text/x-handlebars-template" id="projects-template">
+    {{#projects}}
+    <div class="col-md-4">
+        <div class="feature-card">
+            <div class="u-icon u-icon__circle u-icon__lg {{stackColor stack}}">
+                <i class="{{stackIcon stack}}"></i>
+            </div>
+            <div class="feature-card__body">
+                <h4 class="feature-title">{{name}}</h4>
+                <p>{{description}}</p>
+                <p>{{developerLinks developers}}</p>
+                <div class="d-flex flex-row flex-md-column">
+                    <a class="btn btn-primary btn-md mr-2 mb-md-2 mr-md-0" href="{{link}}" target="_blank" rel="noreferrer noopener">
+                        View Project&nbsp;
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" href="{{repo}}" target="_blank" rel="noreferrer noopener">
+                        Source code&nbsp;
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/projects}}
+</script>
+<script src="/js/vendors/firebase-app.js"></script>
+<script src="/js/vendors/firebase-firestore.min.js"></script>
+<script src="/js/vendors/firebase-storage.min.js"></script>
 <script src="js/vendors/jquery.min.js"></script>
 <script src="js/vendors/bootstrap.bundle.min.js"></script>
 <script src="js/vendors/jquery.magnific-popup.min.js"></script>
 <script src="js/vendors/jquery.easing.min.js"></script>
 <script src="js/vendors/swiper.min.js"></script>
 <script src="js/vendors/owl.carousel.min.js"></script>
+<script src="js/vendors/handlebars.min.js"></script>
+<script src="js/firebase.config.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/data.js"></script>
 </body>
 </html>
