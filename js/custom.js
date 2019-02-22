@@ -75,24 +75,43 @@ $(document).ready(function(){
   /* Moved to data.js during migration to Firebase      */
   /*====================================================*/
 
+  //initialize new hammer instance and swipe functionalities
+var slider = new Hammer.Manager(document.getElementById('carouselExample'), { inputClass: Hammer.TouchInput});
+var Swipe = new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL});
+slider.add(Swipe);
 
-  var swiper = new Swiper('.screen-slider', {
-    direction: 'horizontal',
-    slidesPerView: 1,
-    spaceBetween: 1,
-    parallax: true,
-    breakpoints: {
-      480: {
-        slidesPerView: 1,
-        spaceBetween: 40
-      }
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+//implement swipe action on the carousel
+slider.on('swiperight swipeleft', function(e) {
+  e.preventDefault();
+  if (e.type == 'swiperight') {
+    $(this).carousel('prev');
+    checkitem();
+  } else {
+    $(this).carousel('next');
+    checkitem();
+  }
+});
+
+
+$('#carouselExample').on('slide.bs.carousel', function (e) {
+    var $e = $(e.relatedTarget);
+    var idx = $e.index();
+    var itemsPerSlide = 3;
+    var totalItems = $('.carousel-item').length;
+
+    if (idx >= totalItems-(itemsPerSlide-1)) {
+        var it = itemsPerSlide - (totalItems - idx);
+        for (var i=0; i<it; i++) {
+            // append slides to end
+            if (e.direction=="left") {
+                $('.carousel-item').eq(i).appendTo('.carousel-inner');
+            }
+            else {
+                $('.carousel-item').eq(0).appendTo('.carousel-inner');
+            }
+        }
     }
-  });
-
+});
   /*====================================================*/
   /* TABS INIT                                   */
   /*====================================================*/
