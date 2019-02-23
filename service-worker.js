@@ -6,7 +6,9 @@ self.addEventListener('fetch', function (event) {
                 console.log("fetch completed: " + event.request.url, networkResponse);
                 if (networkResponse) {
                     console.debug("updated cached page: " + event.request.url, networkResponse);
-                    cache.put(event.request, networkResponse.clone());
+                    if (event.request.method === 'GET' && networkResponse.type === 'basic') {
+                        cache.put(event.request, networkResponse.clone());
+                    }
                 }
                 return networkResponse;
             }, function (event) {
@@ -24,7 +26,6 @@ self.addEventListener('fetch', function (event) {
                             '/learn/index.html',
                             '/css/animate.css',
                             '/css/bootstrap.min.css',
-                            '/css/fontawesome-all.min.css',
                             '/css/ionicons.min.css',
                             '/css/magnific-popup.css',
                             '/css/owl.carousel.min.css',
@@ -34,7 +35,7 @@ self.addEventListener('fetch', function (event) {
                             '/images/assets/events/fba.png',
                             '/images/assets/events/fbw.png',
                             '/images/assets/events/rpj.png',
-                            '/images/assets/hero-1-2.png',
+                            '/images/assets/diversity.png',
                             '/images/assets/logo2.png',
                             '/images/assets/team/avatar.png',
                             '/images/assets/technologies/android.png',
