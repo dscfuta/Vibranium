@@ -498,6 +498,20 @@ p {
   }
 }
 
+/* ensure all cards are the same height */
+.project-card {
+  height: 100%;
+}
+
+.project-card .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card .card-body .card-text {
+  flex: 1 1 auto;
+}
+
 .project-card .cardheader .img-top {
     position: relative;
     top: -20px;
