@@ -184,22 +184,20 @@ $(function () {
           data[key] = $(selector).val();
         }
       })
+      enableLoadingMode();
       db.collection('events').doc(activeDocId).set(data).then(function () {
         var eventId = activeDocId
         if (imageFileUpload.files && imageFileUpload.files[0]) {
           return uploadImage(eventId, imageFileUpload.files[0]).then(function () {
-            $('.image-upload-progress-wrapper').removeClass('active');
-            updateDialog.close();
-            fetchData();
+            finish();
           });
         } else {
-          $('.image-upload-progress-wrapper').removeClass('active');
-          updateDialog.close();
-          fetchData();
+          finish();
         }
       }).catch(function (err) {
         console.warn(err);
-        alert('Failed to edit event because ' + message);
+        alert('Failed to edit event because ' + err.message);
+        disableLoadingMode();
       })
     }
   }
@@ -245,6 +243,15 @@ $(function () {
             date: datum.date ? new Date(datum.date.seconds * 1000).toLocaleDateString() : '',
             time: datum.time ? new Date(datum.time.seconds * 1000).toLocaleTimeString() : ''
           })
+        })
+        data = data.map(function (datum) {
+          if (datum.description.length > 60) {
+            return Object.assign({}, datum, {
+              description: datum.description.substr(0, 60) + '...'
+            })
+          } else {
+            return datum
+          }
         })
         var html = template.event({ events: data });
         $eventList.html(html);
