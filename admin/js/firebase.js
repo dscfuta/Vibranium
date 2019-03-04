@@ -6,7 +6,8 @@ $(function () {
         if (location.href.endsWith('login.html')) {
           location.href = location.href.slice(0, location.href.indexOf('login.html'))
         } else {
-          resolve(user)
+          $('#userEmailDisplay').text(user.email);
+          resolve(user);
         }
       } else {
         // No user is signed in.

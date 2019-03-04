@@ -11,37 +11,11 @@ $(function () {
   var storage = firebase.storage();
   var storageRef = storage.ref();
   var instructorImagesRef = storageRef.child('images/instructors');
+  var eventImagesRef = storageRef.child('images/events');
 
-  var $projectList = $('#projectList');
   var $upcomingEventsList = $('#upcomingEventsList');
   var $pastEventsList = $('#pastEventsList');
-  var $teamSliderIndicators = $('.team-slider__indicators');
-  var $teamSlider = $('.team-slider');
-  function makeOwlDot() {
-    return $('<li></li>').addClass('owl-dot');
-  }
-  function convertDateTimestampToString(date) {
-    if (date.from) {
-      return {
-        date: new Date(date.from.seconds * 1000).toLocaleDateString() + ' - ' + new Date(date.to.seconds * 1000).toLocaleDateString(),
-      }
-    } else {
-      return {
-        date: new Date(date.seconds * 1000).toLocaleDateString(),
-        time: new Date(date.seconds * 1000).toLocaleTimeString()
-      }
-    }
-  }
-  var stacks = {
-    web: {
-      icon: 'fab fa-node-js',
-      color: 'primary'
-    },
-    mobile: {
-      icon: 'fas fa-mobile-alt',
-      color: 'secondary'
-    }
-  } 
+  var $teamSlider = $('#carouselExample .carousel-inner');
   var eventTemplateSource = document.getElementById('events-template').innerHTML;
   var eventTemplate = Handlebars.compile(eventTemplateSource);
   var pastEventsTemplateSource = document.getElementById('past-events-template').innerHTML;
@@ -54,99 +28,75 @@ $(function () {
   var teamItemTemplate = Handlebars.compile(teamItemTemplateSource);
   var projectsTemplateSource = document.getElementById('projects-template').innerHTML;
   var projectsTemplate = Handlebars.compile(projectsTemplateSource);
-  Handlebars.registerHelper('stackColor', function (stack) {
-    if (stacks[stack]) {
-      return new Handlebars.SafeString('bg-dimped__' + stacks[stack].color);
-    } else {
-      console.warn('Unknown stack', stack);
-      return ''
-    }
-  })
-  Handlebars.registerHelper('stackIcon', function (stack) {
-    if (stacks[stack]) {
-      return new Handlebars.SafeString(stacks[stack].icon);
-    } else {
-      console.warn('Unknown stack', stack);
-      return ''
-    }
-  })
-  Handlebars.registerHelper('developerLinks', function (developers) {
-    var result = '';
-    developers = developers
-      .split(',')
-      .map(function (developer) { return developer.trim() });
-    developers.forEach(function (developer, index) {
-      result += '<a href="https://twitter.com/'
-        + developer.substr(1) + '" target="_blank"'
-        + ' rel="noreferrer noopener">'
-        + developer + '</a>'
-      if (index !== developers.length - 1) result += ', '
-    })
-    return new Handlebars.SafeString(result);
-  })
   $upcomingEventsList.empty();
   $pastEventsList.empty();
   $teamSlider.empty();
-  $teamSliderIndicators.empty();
-  $projectList.empty();
+  // $teamSliderIndicators.empty();
   $upcomingEventsList.html(spinnerTemplate());
   $pastEventsList.html(spinnerTemplate());
   $teamSlider.html(spinnerTemplate());
-  $projectList.html(spinnerTemplate());
-  db.collection('projects').get().then(function (querySnapshot) {
-    $projectList.empty()
-    var docDatas = []
-    querySnapshot.forEach(function (doc) {
-      var data = doc.data();
-      docDatas.push(data);
-    });
-    var html = projectsTemplate({
-      projects: docDatas
-    })
-    $projectList.html(html);
-  }).catch(function (err) {
-    console.warn(err);
-    $projectList.empty();
-    var html = errorTemplate({
-      error: 'Failed to fetch projects, please check your internet connection'
-    })
-    $projectList.html(html);
-  })
   db.collection('events').get().then(function (querySnapshot) {
     $upcomingEventsList.empty();
     $pastEventsList.empty();
-    var docDatas = [];
+    var promises = [];
     querySnapshot.forEach(function (doc) {
-      docDatas.push(doc.data());
+      var data = doc.data();
+      var id = doc.id;
+      promises.push(new Promise(function (resolve, reject) {
+        eventImagesRef.child(id).getDownloadURL().then(function (url) {
+          resolve(Object.assign({}, data, {
+            id: id,
+            imageURL: url
+          }));
+        }).catch(function (error) {
+          if (error.code === 'storage/object-not-found') {
+            // Admin hasn't uploaded an image
+            resolve(Object.assign({}, data, {
+              id: id,
+              imageURL: ''
+            }));
+          } else {
+            reject(err);
+          }
+        });
+      }))
     });
-    var pastEvents = docDatas.filter(function (doc) {
+    return Promise.all(promises);
+  }).then(function (data) {
+    var pastEvents = data.filter(function (doc) {
       var docDate = doc.date;
       var date;
       var now = new Date();
       if (doc.from) {
-        date = new Date(doc.to.seconds);
+        date = new Date(doc.to.seconds * 1000);
       } else {
-        date = new Date(docDate.seconds);
+        date = new Date(docDate.seconds * 1000);
       }
       return now > date;
     })
-    var upcomingEvents = docDatas.filter(function (doc) {
+    var upcomingEvents = data.filter(function (doc) {
       var docDate = doc.date;
       var date;
       var now = new Date();
       if (doc.from) {
-        date = new Date(doc.to);
+        date = new Date(doc.to.seconds * 1000);
       } else {
-        date = new Date(docDate);
+        date = new Date(docDate.seconds * 1000);
       }
       return now < date;
     })
-    pastEvents = pastEvents.map(function (event) {
-      var newEvent = Object.assign({}, event, convertDateTimestampToString(event.date));
+    pastEvents = pastEvents.map(function (datum) {
+      var newEvent = Object.assign({}, datum, {
+        date: datum.date ? new Date(datum.date.seconds * 1000).toLocaleDateString() : '',
+        time: datum.time ? new Date(datum.time.seconds * 1000).toLocaleTimeString() : ''
+      });
       return newEvent
     })
-    upcomingEvents = upcomingEvents.map(function (event) {
-      var newEvent = Object.assign({}, event, convertDateTimestampToString(event.date));
+    upcomingEvents = upcomingEvents.map(function (datum) {
+      var newEvent = Object.assign({}, datum, {
+        date: datum.date ? new Date(datum.date.seconds * 1000).toLocaleDateString() : '',
+        time: datum.time ? new Date(datum.time.seconds * 1000).toLocaleTimeString() : ''
+      });
       return newEvent
     })
     var html;
@@ -160,7 +110,7 @@ $(function () {
       });
     }
     $upcomingEventsList.html(html)
-    if (pastEventsTemplate.length === 0) {
+    if (pastEvents.length === 0) {
       html = errorTemplate({
         error: 'Our past remains blank, look to the future...'
       })
@@ -211,30 +161,63 @@ $(function () {
         imageCSS: 'background-image: url(' + data.imageURL + ')'
       });
     });
-    $teamSliderIndicators.empty();
-    $teamSliderIndicators.append(new Array(instructors.length).fill(makeOwlDot()));
+    // $teamSliderIndicators.empty();
+    // $teamSliderIndicators.append(new Array(instructors.length).fill(makeOwlDot()));
     $teamSlider.empty();
     var html = teamItemTemplate({
       instructors: instructors
     });
     $teamSlider.html(html);
-    var $ClientsSlider = $('.team-slider');
-    if ($ClientsSlider.length > 0) {
-      $ClientsSlider.owlCarousel({
-        loop: true,
-        center: true,
-        margin: 0,
-        items: 1,
-        nav: false,
-        dots: true,
-        lazyLoad: true,
-        dotsContainer: '.dots'
+    var slider = new Hammer.Manager(document.getElementById('carouselExample'), { inputClass: Hammer.TouchInput });
+    var Swipe = new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL });
+    slider.add(Swipe);
+
+    //implement swipe action on the carousel
+    slider.on('swiperight swipeleft', function (e) {
+      e.preventDefault();
+      if (e.type == 'swiperight') {
+        $(this).carousel('prev');
+        checkitem();
+      } else {
+        $(this).carousel('next');
+        checkitem();
+      }
+    });
+
+    $('#carouselExample').carousel();
+    $('#carouselExample').on('slide.bs.carousel', function (e) {
+      var $e = $(e.relatedTarget);
+      var idx = $e.index();
+      var itemsPerSlide = 3;
+      var totalItems = $('.carousel-item').length;
+
+      if (idx >= totalItems - (itemsPerSlide - 1)) {
+        var it = itemsPerSlide - (totalItems - idx);
+        for (var i = 0; i < it; i++) {
+          // append slides to end
+          if (e.direction == "left") {
+            $('.carousel-item').eq(i).appendTo('.carousel-inner');
+          }
+          else {
+            $('.carousel-item').eq(0).appendTo('.carousel-inner');
+          }
+        }
+      }
+    });
+    function imageIntersectionObserverCallback(imageEntries, observer) {
+      imageEntries.forEach(imgEntry => {
+        if (imgEntry.isIntersecting) {
+          imgEntry.target.setAttribute('src', imgEntry.target.dataset.src);
+          observer.unobserve(imgEntry.target);
+        }
       })
-      $('.owl-dot').on('click', function() {
-        $(this).addClass('active').siblings().removeClass('active');
-        $ClientsSlider.trigger('to.owl.carousel', [$(this).index(), 300]);
-      });
     }
+    const imageObserver = new IntersectionObserver(imageIntersectionObserverCallback, { rootMargin: '30px 0px' });
+    imageObserver.POLL_INTERVAL = 200;
+    imageObserver.USE_MUTATION_OBSERVER = false;
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    })
   }).catch(function (err) {
     console.warn(err);
     $teamSlider.empty();
