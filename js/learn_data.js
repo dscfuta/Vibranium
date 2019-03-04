@@ -57,7 +57,7 @@
     var levelEscaped = Handlebars.escapeExpression(level);
     var levelCapitalized = levelEscaped.substr(0, 1).toUpperCase() + levelEscaped.slice(1);
     return new Handlebars.SafeString(
-      '<div class="material-level material-level__' + level + '">' + levelCapitalized + '</div>'
+      '<p class="tagging ' + level + ' float-right">' + levelCapitalized + '</div>'
     )
   })
   Handlebars.registerHelper('bookTags', function () {
