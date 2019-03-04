@@ -110,7 +110,7 @@ $(function () {
       });
     }
     $upcomingEventsList.html(html)
-    if (pastEventsTemplate.length === 0) {
+    if (pastEvents.length === 0) {
       html = errorTemplate({
         error: 'Our past remains blank, look to the future...'
       })
@@ -184,7 +184,7 @@ $(function () {
       }
     });
 
-
+    $('#carouselExample').carousel();
     $('#carouselExample').on('slide.bs.carousel', function (e) {
       var $e = $(e.relatedTarget);
       var idx = $e.index();
