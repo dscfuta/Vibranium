@@ -36,8 +36,6 @@ $(function () {
   $pastEventsList.html(spinnerTemplate());
   $teamSlider.html(spinnerTemplate());
   db.collection('events').get().then(function (querySnapshot) {
-    $upcomingEventsList.empty();
-    $pastEventsList.empty();
     var promises = [];
     querySnapshot.forEach(function (doc) {
       var data = doc.data();
@@ -99,6 +97,8 @@ $(function () {
       });
       return newEvent
     })
+    $upcomingEventsList.empty();
+    $pastEventsList.empty();
     var html;
     if (upcomingEvents.length === 0) {
       html = errorTemplate({
@@ -164,10 +164,18 @@ $(function () {
     // $teamSliderIndicators.empty();
     // $teamSliderIndicators.append(new Array(instructors.length).fill(makeOwlDot()));
     $teamSlider.empty();
-    var html = teamItemTemplate({
-      instructors: instructors
-    });
+    var html;
+    if (instructors.length > 0) {
+      html = teamItemTemplate({
+        instructors: instructors
+      });
+    } else {
+      html = errorTemplate({
+        error: 'Seems like you\'re offline. Please try again when online'
+      });
+    }
     $teamSlider.html(html);
+    $teamSlider.children('.carousel-item').eq(0).addClass('active');
     var slider = new Hammer.Manager(document.getElementById('carouselExample'), { inputClass: Hammer.TouchInput });
     var Swipe = new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL });
     slider.add(Swipe);
