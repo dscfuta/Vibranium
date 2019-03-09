@@ -49,6 +49,13 @@
     .img-onboard {
         width: 300px;
     }
+    input.form-control {
+        padding: 15px 20px;
+    }
+    select.form-control {
+        height: 50px;
+        padding: 5px 20px;
+    }
     </style>
 </head>
 <body class="x-hidden has-sticky-header">
@@ -157,8 +164,8 @@
                         <p>Tecnical information</p>
                         <div class="form-group">
                             <label for="stack">What would you like to build or learn?</label>
-                            <small id="stackHelp" class="form-text text-muted">You can send a mail to dscfuta@gmail.com if you need direction or chat on the whatsapp group.</small>
-                            <select required class="form-control" id="stack">
+                            <small id="stackHelp" class="form-text text-muted">You can send a mail to dscfuta@gmail.com if you need direction or call 08168678931.</small>
+                            <select required class="form-control" size="5" id="stack">
                                 <option value="mobile">Android Development - Java</option>
                                 <option value="web-frontend">Web Frontend - HTML5, CSS3, JS Es6</option>
                                 <option value="web-backend-php">Web Backend - PHP</option>
@@ -197,7 +204,7 @@
     <span class="step"></span>
     <span class="step"></span>
     <span class="step"></span>
-    <span class="step"></span>
+    <!-- <span class="step"></span> -->
 </div>
                     <button type="button" class="btn btn-primary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                     <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
