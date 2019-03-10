@@ -41,7 +41,11 @@
 
     .step.active {
         opacity: 1;
-        background-color:#3bc1fd;
+        background-color:#2F5BE7;
+    }
+
+    .step-button {
+        padding: 10px 12px;
     }
     input.invalid {
         background-color: #ffdddd;
@@ -61,8 +65,9 @@
 <body class="x-hidden has-sticky-header">
 <nav class="navbar navbar-expand-lg fixed-top custom-menu custom-menu__light">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="images/icon.png" height="35" alt="Image">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img class="mr-2" src="images/icon.png" height="35" alt="Image">
+            <h3 class="m-0 section-title">Onboarding</h3>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
@@ -91,11 +96,7 @@
 </nav>
 
 
-<section id="web" class="section-spacer">
-
-    <header class="section-header text-center d-flex flex-column justify-content-center align-items-center">
-        <h2 class="section-title">DSC onboarding form</h2>        
-    </header>
+<section id="onboarding">
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-xs-11 col-lg-offset-5 m-5">
@@ -103,7 +104,7 @@
                     <div class="tab">
                         <div class="d-flex flex-column justify-content-center align-items-center">
                             <img class="img-responsive img-onboard" src="images/onboard.svg" alt="">
-                            <h6 class="ml-5 m-5 text-center">DSC is a Google Developers’ program for University students designed to help them build their mobile, web development & design skills. It is open to any student, ranging from novice developers who are just starting to advanced developers who want to further improve their skills. it also encourages them to make use of the acquired skill sets to solve local business problems around their institution. It is designed to help them build job-ready skills, making them further employable in the future.</h6>
+                            <p class="ml-5 m-5 text-center lead">DSC is a Google Developers’ program for University students designed to help them build their mobile, web development & design skills. It is open to any student, ranging from novice developers who are just starting to advanced developers who want to further improve their skills. it also encourages them to make use of the acquired skill sets to solve local business problems around their institution. It is designed to help them build job-ready skills, making them further employable in the future.</p>
                         </div>
                     </div>
                     <div class="tab">
@@ -206,8 +207,12 @@
     <span class="step"></span>
     <!-- <span class="step"></span> -->
 </div>
-                    <button type="button" class="btn btn-primary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    <button type="button" class="hero-button step-button" id="prevBtn" onclick="nextPrev(-1)">
+                        <i class="fas fa-chevron-left"></i>&nbsp;Previous
+                    </button>
+                    <button type="button" class="hero-button step-button" id="nextBtn" onclick="nextPrev(1)">
+                        Next&nbsp;<i class="fas fa-chevron-right"></i>
+                    </button>
                    </form>
         </div>
     </div>
@@ -218,28 +223,30 @@
         <div class="row flex-column-reverse flex-sm-row flex-lg-row">
             <div class="col-md-4 col-12">
                 <div class="footer-widget first-of-footer-widget">
-                    <img src="images/icon.png" height="35" class="logo-sm mb-10" alt="Image">
+                    <img data-src="images/footer-logo.png" class="logo-sm mb-10" alt="DSC FUTA University footer logo">
                     <p>Copyright &copy; 2019. All Rights Reserved.</p>
                     <span>Feel free to drop us an email at </span>
-                    <a href="mailto:team@dsc.scuniversityname.org">team@dscuniversityname.org</a>
+                    <a href="mailto:dscfuta@gmail.com">dscfuta@gmail.com</a>
                     <ul class="social-list__inline mt-10">
                         <li>
-                            <a href="https://twitter.com/DSCUniversityName">
+                            <a href="https://twitter.com/dscfuta" target="_blank" rel="noreferrer noopener">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="https://github.com/DSCUniversityName">
+                            <a href="https://github.com/dscfuta" target="_blank" rel="noreferrer noopener">
                                 <i class="fab fa-github"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                <i class="fab fa-slack"></i>
+                            <a href="https://developers.google.com/programs/dsc/" target="_blank"
+                                rel="noreferrer noopener">
+                                <i class="fab fa-google"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/user/GoogleDevelopers">
+                            <a href="https://www.youtube.com/channel/UCtpTYLuusEy-c6yDt0iH7WQ" target="_blank"
+                                rel="noreferrer noopener">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         </li>
@@ -247,19 +254,22 @@
                 </div>
             </div>
             <div class="col-md-8 col-sm-10">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-md-4 col-6">
                         <div class="footer-widget">
                             <h4 class="footer-widget__title">Programs</h4>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="https://www.womentechmakers.com/" target="_blank" rel="noopener noreferrer">Women Techmakers</a>
+                                    <a href="https://www.womentechmakers.com/" target="_blank" rel="noreferrer">Women
+                                        Techmakers</a>
                                 </li>
                                 <li>
-                                    <a href="https://developers.google.com/experts/" target="_blank" rel="noopener noreferrer">Google Developer Experts</a>
+                                    <a href="https://developers.google.com/experts/" target="_blank"
+                                        rel="noreferrer">Google Developer Experts</a>
                                 </li>
                                 <li>
-                                    <a href="https://developers.google.com" target="_blank" rel="noopener noreferrer">Google Developer Groups</a>
+                                    <a href="https://developers.google.com/programs/community/gdg/">Google Developer
+                                        Groups</a>
                                 </li>
                             </ul>
                         </div>
@@ -270,27 +280,23 @@
                             <ul>
                                 <li class="list-unstyled">
                                 <li>
-                                    <a href="https://github.com/DSCUniversityName" target="_blank" rel="noopener noreferrer">Partner</a>
+                                    <a href="https://flutter.io/">Learn Flutter</a>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/DSCLEADSAfrica" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    <a href="https://www.youtube.com/user/GoogleDevelopers">Devs Playlist</a>
                                 </li>
                                 <li>
-                                    <a href="https://developer.android.com/dev-summit/community-guidelines/" target="_blank" rel="noopener noreferrer">Code of
+                                    <a href="https://developer.android.com/dev-summit/community-guidelines/"
+                                        target="_blank" rel="noreferrer">Code of
                                         conduct</a>
                                 </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="footer-widget">
-                            <h4 class="footer-widget__title">Contribute</h4>
-                            <ul class="list-unstyled">
                                 <li>
-                                    <a href="https://github.com/kelvinkamau/Vibranium/issues/new?template=documentation-bug.md" target="_blank" rel="noopener noreferrer">File a bug</a>
+                                    <a href="https://github.com/dscfuta/Vibranium/issues/new?template=documentation-bug.md"
+                                        target="_blank" rel="noreferrer">File a bug</a>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/kelvinkamau/Vibranium" target="_blank" rel="noopener noreferrer">View source</a>
+                                    <a href="https://github.com/dscfuta/Vibranium" target="_blank" rel="noreferrer">View
+                                        source</a>
                                 </li>
                             </ul>
                         </div>
