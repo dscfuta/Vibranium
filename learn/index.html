@@ -54,23 +54,15 @@
     <!-- End Google Analytics -->
   </head>
   <body class="x-hidden has-sticky-header">
-    <nav
-      class="navbar navbar-expand-lg fixed-top custom-menu custom-menu__light custom-menu__materials"
-    >
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-          <img src="/images/assets/logo.png" alt="Image" />
+    <nav class="navbar navbar-expand-lg fixed-top custom-menu custom-menu__light custom-menu__materials">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="/images/tutorial.png" height="35" alt="Image">
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="menu-icon__circle"> </span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="menu-icon__circle">
+          </span>
           <span class="menu-icon">
             <span class="menu-icon__bar"></span>
             <span class="menu-icon__bar"></span>
@@ -78,40 +70,16 @@
           </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-lg-auto mr-lg-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/#overview">Overview</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#workshops">Workshops</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="/#team">Team</a></li>
-            <li class="nav-item"><a class="nav-link" href="/#faqs">FAQs</a></li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="https://medium.com/@dscfuta"
-                target="_blank"
-                rel="noreferrer noopener"
-                >Stories</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#projects">Projects</a>
-            </li>
+          <ul class="navbar-nav ml-lg-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Tutorials <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/index.html">Home
+                <span class="sr-only">(current)</span>
+              </a>
             </li>
+            <li class="nav-item"><a href="/projects.html" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="https://medium.com/search?q=DSC+FUTA" target="_blank" rel="noopener" class="nav-link">Stories</a></li>
           </ul>
-          <div class="custom-menu__right">
-            <a
-              href="https://meetup.com/dscfuta"
-              class="btn btn-primary btn-pills"
-              target="_blank"
-              rel="noreferrer noopener"
-              >RSVP for Next Event</a
-            >
-          </div>
+    
         </div>
       </div>
       <div class="container">
@@ -130,7 +98,7 @@
         <div class="row flex-column-reverse flex-sm-row flex-lg-row">
           <div class="col-md-4 col-12">
             <div class="footer-widget first-of-footer-widget">
-              <img src="/images/assets/logo2.png" class="logo-sm mb-10" alt="Image">
+              <img src="/images/footer-logo.png" class="logo-sm mb-10" alt="Image">
               <p>Copyright &copy; 2018. All Rights Reserved.</p>
               <span>Feel free to drop us an email at </span>
               <a href="mailto:dscfuta@gmail.com">dscfuta@gmail.com</a>
@@ -266,16 +234,17 @@
             {{#if courses.length}}
               {{#courses}}
               <div class="col-md-4">
-                <div class="material-single">
-                  <div class="material-single__body">
+                <div class="card course-card" style="width: 22rem;">
+                  <img class="card-img-top" src="{{imageURL}}" alt="{{name}}">
+                  <div class="card-body">
                     {{#if ./level}}
-                    <div class="material-attributes">
-                      {{levelTag ./level}}
-                    </div>
+                    {{levelTag ./level}}
                     {{/if}}
-                    <h2 class="material-title">{{title}}</h2>
-                    <p>{{description}}</p>
-                    <a href="{{link}}" target="_blank" rel="noreferrer noopener" class="btn btn-primary btn-md">View course</a>
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">
+                      {{description}}
+                    </p>
+                    <a href="{{link}}" class="button float-right" target="_blank" rel="noopener noreferrer">View course</a>
                   </div>
                 </div>
               </div>
@@ -293,18 +262,16 @@
             {{#if books.length}}
               {{#books}}
               <div class="col-md-4">
-                <div class="material-single">
-                  <div class="material-single__body">
-                    <div class="material-attributes">
-                      {{#if ./level}}
-                        {{levelTag ./level}}
-                      {{/if}}
-                      {{bookTags}}
-                    </div>
-                    <h2 class="material-title">{{title}}</h2>
-                    <h5 class="material-author">{{author}}</h5>
-                    <p>{{description}}</p>
-                    <a href="{{link}}" target="_blank" rel="noreferrer noopener" class="btn btn-primary btn-md">View book</a>
+                <div class="card course-card" style="width: 22rem;">
+                  <img class="card-img-top" src="{{imageURL}}" alt="{{name}}">
+                  <div class="card-body">
+                    {{#if ./level}}
+                      {{levelTag ./level}}
+                    {{/if}}
+                    <h5 class="card-title">{{title}}</h5>
+                    <h6 class="material-author">{{author}}</h6>
+                    <p class="card-text">{{description}}</p>
+                    <a href="{{link}}" target="_blank" rel="noreferrer noopener" class="button float-right">View book</a>
                   </div>
                 </div>
               </div>
@@ -318,29 +285,30 @@
           </div>
         </div>
         <div class="tab-pane" id="documentation" role="tabpanel" aria-label="Documentation">
-          {{#if documentation.length}}
-            {{#documentation}}
-            <div class="col-md-4">
-              <div class="material-single">
-                <div class="material-single__body">
-                  {{#if ./level}}
-                  <div class="material-attributes">
+          <div class="row">
+            {{#if documentation.length}}
+              {{#documentation}}
+              <div class="col-md-4">
+                <div class="card course-card" style="width: 22rem;">
+                  <img class="card-img-top" src="{{imageURL}}" alt="{{name}}">
+                  <div class="card-body">
+                    {{#if ./level}}
                     {{levelTag ./level}}
+                    {{/if}}
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">{{description}}</p>
+                    <a href="{{link}}" target="_blank" rel="noreferrer noopener" class="button float-right">View documentation</a>
                   </div>
-                  {{/if}}
-                  <h2 class="material-title">{{title}}</h2>
-                  <p>{{description}}</p>
-                  <a href="{{link}}" target="_blank" rel="noreferrer noopener" class="btn btn-primary btn-md">View documentation</a>
                 </div>
               </div>
-            </div>
-            {{/documentation}}
-          {{else}}
-            <div class="message-wrapper">
-              <h1 class="message-icon">:(</h1>
-              <h2 class="message-text">We have no documentation for you right now, check back later.</h2>
-            </div>
-          {{/if}}
+              {{/documentation}}
+            {{else}}
+              <div class="message-wrapper">
+                <h1 class="message-icon">:(</h1>
+                <h2 class="message-text">We have no documentation for you right now, check back later.</h2>
+              </div>
+            {{/if}}
+          </div>
         </div>
       </div>
     </script>
