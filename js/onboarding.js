@@ -74,10 +74,11 @@
     if (!email) {
       throw new Error('email is a required argument')
     }
-    return Promise.all([
-      signupRecordExists(data.email),
-      emailRecordExists(data),
-    ])
+    // return Promise.all([
+    //   signupRecordExists(data.email),
+    //   emailRecordExists(data),
+    // ])
+    return signupRecordExists(data.email)
   }
 
   /*
@@ -162,40 +163,62 @@
       var data = mapToData(dataMap)
       $spinner.show()
       userExists(data)
-        .then(function(exists) {
-          var signupRecordExists = exists[0]
-          var emailRecordExists = exists[1]
-          var promises = []
-          if (!signupRecordExists) {
-            promises.push(addUserData(data))
-          }
-          if (
-            !emailRecordExists &&
-            (data.category === 'intermediate' || data.category === 'beginner')
-          ) {
-            promises.push(addUserEmail(data))
-          }
-          return Promise.all(promises).then(function(results) {
-            // The user has already been onboarded
-            // Inform them about that
-            if (results.length === 0) {
-              $successMessage
-                .find('.message-text')
-                .text(
-                  'You have already been onboarded. Await our response in your email.'
-                )
-            }
-            // If not, notify them that they've been successfully
-            // onboarded
+        .then(function (exists) {
+          // If the user exists, notify them that they've already registered
+          if (exists) {
+            $successMessage
+              .find('.message-text')
+              .text(
+                'You have already been onboarded. Await our response in your email.'
+              )
             finish()
-          })
+          } else {
+            addUserData(data)
+              .then(() => {
+                finish()
+              })
+              .catch(err => {
+                console.warn(err)
+                $errorMessage.show()
+                $spinner.hide()
+              })
+          }
         })
-        .catch(function(error) {
-          // Something went wrong, let the user know.
-          console.warn(error)
-          $spinner.hide()
-          $errorMessage.show()
-        })
+      // userExists(data)
+      //   .then(function(exists) {
+      //     var signupRecordExists = exists[0]
+      //     var emailRecordExists = exists[1]
+      //     var promises = []
+      //     if (!signupRecordExists) {
+      //       promises.push(addUserData(data))
+      //     }
+      //     if (
+      //       !emailRecordExists &&
+      //       (data.category === 'intermediate' || data.category === 'beginner')
+      //     ) {
+      //       promises.push(addUserEmail(data))
+      //     }
+      //     return Promise.all(promises).then(function(results) {
+      //       // The user has already been onboarded
+      //       // Inform them about that
+      //       if (results.length === 0) {
+      //         $successMessage
+      //           .find('.message-text')
+      //           .text(
+      //             'You have already been onboarded. Await our response in your email.'
+      //           )
+      //       }
+      //       // If not, notify them that they've been successfully
+      //       // onboarded
+      //       finish()
+      //     })
+      //   })
+      //   .catch(function(error) {
+      //     // Something went wrong, let the user know.
+      //     console.warn(error)
+      //     $spinner.hide()
+      //     $errorMessage.show()
+      //   })
     })
   })
 })(jQuery)
