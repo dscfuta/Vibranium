@@ -47,12 +47,10 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item"><a href="learn.html" target="_blank" rel="noopener noreferrer" class="nav-link">Learn</a></li>
-                <li class="nav-item"><a href="index.html" target="_blank" rel="noopener noreferrer" class="nav-link">Stories</a></li>
+                <li class="nav-item"><a href="/learn" target="_blank" rel="noopener noreferrer" class="nav-link">Learn</a></li>
+                <li class="nav-item"><a href="https://medium.com/search?q=DSC+FUTA" target="_blank" rel="noopener"
+                        class="nav-link">Stories</a></li>
             </ul>
-            <div class="custom-menu__right">
-                <a href="#" class="btn btn-primary btn-pills" target="_blank">Submit a project</a>
-            </div>
         </div>
     </div>
 </nav>
@@ -87,7 +85,7 @@
         <div class="row flex-column-reverse flex-sm-row flex-lg-row">
             <div class="col-md-4 col-12">
                 <div class="footer-widget first-of-footer-widget">
-                    <img data-src="images/footer-logo.png" class="logo-sm mb-10" alt="DSC Kisii University footer logo">
+                    <img data-src="images/footer-logo.png" class="logo-sm mb-10" alt="DSC FUTA University footer logo">
                     <p>Copyright &copy; 2019. All Rights Reserved.</p>
                     <span>Feel free to drop us an email at </span>
                     <a href="mailto:dscfuta@gmail.com">dscfuta@gmail.com</a>
@@ -128,11 +126,11 @@
                                         Techmakers</a>
                                 </li>
                                 <li>
-                                    <a href="https://developers.google.com/experts/" target="_blank"
-                                        rel="noreferrer">Google Developer Experts</a>
+                                    <a href="https://developers.google.com/programs/launchpad/">StartUp Launchpad</a>
                                 </li>
                                 <li>
-                                    <a href="https://developers.google.com/experts/">Google Developer Experts</a>
+                                    <a href="https://developers.google.com/experts/" target="_blank"
+                                        rel="noreferrer">Google Developer Experts</a>
                                 </li>
                                 <li>
                                     <a href="https://developers.google.com/programs/community/gdg/">Google Developer
@@ -158,12 +156,7 @@
                                         conduct</a>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/dscfuta/Vibranium/issues/new?template=documentation-bug.md"
-                                        target="_blank" rel="noreferrer">File a bug</a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/dscfuta/Vibranium" target="_blank" rel="noreferrer">View
-                                        source</a>
+                                    <a href="https://developers.googleblog.com/">Blog</a>
                                 </li>
                             </ul>
                         </div>
@@ -174,14 +167,30 @@
     </div>
 </footer>
 <a href="#" id="scroll" style="display: none;"><i class="fas fa-angle-up"></i></a>
+<script>
+    function imageIntersectionObserverCallback(imageEntries, observer) {
+        imageEntries.forEach(imgEntry => {
+            if (imgEntry.isIntersecting) {
+                imgEntry.target.setAttribute('src', imgEntry.target.dataset.src);
+                observer.unobserve(imgEntry.target);
+            }
+        })
+    }
+    const imageObserver = new IntersectionObserver(imageIntersectionObserverCallback, { rootMargin: '30px 0px' });
+    imageObserver.POLL_INTERVAL = 200;
+    imageObserver.USE_MUTATION_OBSERVER = false;
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    })
+</script>
 <script type="text/x-handlebars-template" id="web-projects-template">
     {{#projects}}
-    <div class="col-md-4 col-12">
+    <div class="col-md-4 col-12 mb-4">
         <div class="card project-card">
     
             <div class="cardheader">
                 <div class="img-top">
-                    <img src="images/assets/technologies/cloud.png" alt="{{name}}">
+                    <div class="project-image" style="background-image: url(images/assets/technologies/cloud.png);"></div>
                 </div>
                 <h5 class="card-title">{{name}}</h5>
             </div>
@@ -195,7 +204,8 @@
                 <p class="card-text">{{description}}</p>
     
                 <div class="project-btn-wrapper">
-                    <a href="{{repo}}" class="btn btn-primary float-right">View project</a>
+                    <a href="{{repo}}" class="event-btn float-right ml-3">Source code</a>
+                    <a href="{{link}}" class="event-btn float-right">View project</a>
                 </div>
             </div>
         </div>
@@ -204,11 +214,11 @@
 </script>
 <script type="text/x-handlebars-template" id="mobile-projects-template">
     {{#projects}}
-    <div class="col-md-4 col-12">
+    <div class="col-md-4 col-12 mb-4">
         <div class="card project-card">
             <div class="cardheader">
                 <div class="img-top">
-                    <img src="images/assets/technologies/android.png" alt="{{name}}">
+                    <div class="project-image" style="background-image: url(images/assets/technologies/android.png);"></div>
                 </div>
                 <h5 class="card-title">{{name}}</h5>
             </div>
@@ -222,7 +232,8 @@
                 <p class="card-text">{{description}}</p>
     
                 <div class="project-btn-wrapper">
-                    <a href="{{repo}}" class="btn btn-primary float-right">View project</a>
+                    <a href="{{repo}}" class="event-btn float-right ml-3">Source code</a>
+                    <a href="{{link}}" class="event-btn float-right">View project</a>
                 </div>
             </div>
         </div>
