@@ -93,7 +93,7 @@ $(function () {
         $(inputField)[0][valueAttributes[index]] = null;
       }
     })
-    imageFileUpload.files = null;
+    $(imageFileUpload).val("");
     imagePreview.style.backgroundImage = 'url()';
   }
   function fillForm(docId) {
@@ -129,7 +129,7 @@ $(function () {
     var imageRef = eventsImagesRef.child(eventId)
     var uploadTask = imageRef.put(imageFile, { eventId: eventId })
     uploadTask.on('state_changed', function (snapshot) {
-      var progress = (snapshot.bytesTransferred / snapshot.totalBytes).toFixed(1);
+      var progress = (snapshot.bytesTransferred / snapshot.totalBytes);
       uploadProgress.progress = progress;
       $('.image-upload-progress-wrapper').find('.image-upload-progress-text').text(
         (progress * 100) + '%'
