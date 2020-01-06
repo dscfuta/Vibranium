@@ -59,7 +59,7 @@
                 </li>
             </ul>
             <div class="custom-menu__right">
-                <a href="http://meetu.ps/c/3MmHL/F3j3P/f" class="event-btn" rel="noreferrer" target="_blank">
+                <a href="https://meetup.com/dscfuta" class="event-btn" rel="noreferrer" target="_blank">
                     <i class="fab fa-meetup"></i>
                     Meet Us
                 </a>
@@ -369,7 +369,7 @@
                         <h5 class="card-title">How frequently do events and workshops occur?</h5>
                         <p>We have a hands-on session every Friday &amp; Saturday at CSC Classroom behind 1000LT from 10:00AM to 03:30PM. We also hold
                             workshops and showcases & we would recommend you to join our community on 
-                            <a href="http://meetu.ps/c/3MmHL/F3j3P/f" target="_blank" rel="noreferrer noopener">Meetup</a> to get updates.</p>
+                            <a href="https://meetup.com/dscfuta" target="_blank" rel="noreferrer noopener">Meetup</a> to get updates.</p>
                     </div>
                 </div>
             </div>
@@ -449,6 +449,9 @@
                                     <a href="https://www.womentechmakers.com/" target="_blank" rel="noreferrer">Women Techmakers</a>
                                 </li>
                                 <li>
+                                    <a href="https://developers.google.com/programs/launchpad/">StartUp Launchpad</a>
+                                </li>
+                                <li>
                                     <a href="https://developers.google.com/experts/" target="_blank" rel="noreferrer">Google Developer Experts</a>
                                 </li>
                                 <li>
@@ -473,10 +476,7 @@
                                         conduct</a>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/dscfuta/Vibranium/issues/new?template=documentation-bug.md" target="_blank" rel="noreferrer">File a bug</a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/dscfuta/Vibranium" target="_blank" rel="noreferrer">View source</a>
+                                    <a href="https://developers.googleblog.com/">Blog</a>
                                 </li>
                             </ul>
                         </div>
@@ -520,21 +520,21 @@
         iframeObserver.observe(img);
     });
 
-    // if ('serviceWorker' in navigator) {
-    //     window.addEventListener('load', function () {
-    //             navigator.serviceWorker.register('service-worker.js')
-    //                 .then(function () {
-    //                     console.log("Service Worker Registered,");
-    //                 });
-    //         }
-    //     );
-    // }
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(function () {
+                        console.log("Service Worker Registered,");
+                    });
+            }
+        );
+    }
 </script>
 <script type="text/x-handlebars-template" id="events-template">
     {{#events}}
     <div class="col-md-4 col-12">
         <div class="card event-card">
-            <img class="card-img-top" data-src="{{imageURL}}" alt="Event one poster">
+            <img class="card-img-top" src="{{imageURL}}" alt="{{name}} poster">
             <div class="card-body">
                 <h5 class="card-title">{{name}}</h5>
                 <p class="card-text">
