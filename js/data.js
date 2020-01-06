@@ -48,6 +48,7 @@ $(function () {
           }));
         }).catch(function (error) {
           if (error.code === 'storage/object-not-found') {
+            console.log('Image not found for', id)
             // Admin hasn't uploaded an image
             resolve(Object.assign({}, data, {
               id: id,
@@ -59,67 +60,93 @@ $(function () {
         });
       }))
     });
-    return Promise.all(promises);
-  }).then(function (data) {
-    var pastEvents = data.filter(function (doc) {
-      var docDate = doc.date;
-      var date;
-      var now = new Date();
-      if (doc.from) {
-        date = new Date(doc.to.seconds * 1000);
+    return Promise.all(promises).then(function (data) {
+      return [data, querySnapshot.metadata.fromCache === true]
+    })
+  }).then(function (results) {
+    var data = results[0];
+    var offline = results[1];
+    if (!offline) {
+      var pastEvents = data.filter(function (doc) {
+        var docDate = doc.date;
+        var date;
+        var now = new Date();
+        if (doc.from) {
+          date = new Date(doc.to.seconds * 1000);
+        } else {
+          date = new Date(docDate.seconds * 1000);
+        }
+        return now > date;
+      })
+      var upcomingEvents = data.filter(function (doc) {
+        var docDate = doc.date;
+        var date;
+        var now = new Date();
+        if (doc.from) {
+          date = new Date(doc.to.seconds * 1000);
+        } else {
+          date = new Date(docDate.seconds * 1000);
+        }
+        return now < date;
+      })
+      pastEvents = pastEvents.map(function (datum) {
+        var newEvent = Object.assign({}, datum, {
+          date: datum.date ? new Date(datum.date.seconds * 1000).toLocaleDateString() : '',
+          time: datum.time ? new Date(datum.time.seconds * 1000).toLocaleTimeString() : ''
+        });
+        return newEvent
+      })
+      upcomingEvents = upcomingEvents.map(function (datum) {
+        var newEvent = Object.assign({}, datum, {
+          date: datum.date ? new Date(datum.date.seconds * 1000).toLocaleDateString() : '',
+          time: datum.time ? new Date(datum.time.seconds * 1000).toLocaleTimeString() : ''
+        });
+        return newEvent
+      })
+      $upcomingEventsList.empty();
+      $pastEventsList.empty();
+      var html;
+      if (upcomingEvents.length === 0) {
+        html = errorTemplate({
+          error: 'We have nothing planned, for now...'
+        })
       } else {
-        date = new Date(docDate.seconds * 1000);
+        html = eventTemplate({
+          events: upcomingEvents
+        });
       }
-      return now > date;
-    })
-    var upcomingEvents = data.filter(function (doc) {
-      var docDate = doc.date;
-      var date;
-      var now = new Date();
-      if (doc.from) {
-        date = new Date(doc.to.seconds * 1000);
+      $upcomingEventsList.html(html)
+      if (pastEvents.length === 0) {
+        html = errorTemplate({
+          error: 'Our past remains blank, look to the future...'
+        })
       } else {
-        date = new Date(docDate.seconds * 1000);
+        html = pastEventsTemplate({
+          events: pastEvents
+        })
       }
-      return now < date;
-    })
-    pastEvents = pastEvents.map(function (datum) {
-      var newEvent = Object.assign({}, datum, {
-        date: datum.date ? new Date(datum.date.seconds * 1000).toLocaleDateString() : '',
-        time: datum.time ? new Date(datum.time.seconds * 1000).toLocaleTimeString() : ''
-      });
-      return newEvent
-    })
-    upcomingEvents = upcomingEvents.map(function (datum) {
-      var newEvent = Object.assign({}, datum, {
-        date: datum.date ? new Date(datum.date.seconds * 1000).toLocaleDateString() : '',
-        time: datum.time ? new Date(datum.time.seconds * 1000).toLocaleTimeString() : ''
-      });
-      return newEvent
-    })
-    $upcomingEventsList.empty();
-    $pastEventsList.empty();
-    var html;
-    if (upcomingEvents.length === 0) {
-      html = errorTemplate({
-        error: 'We have nothing planned, for now...'
-      })
+      $pastEventsList.html(html);
     } else {
-      html = eventTemplate({
-        events: upcomingEvents
-      });
-    }
-    $upcomingEventsList.html(html)
-    if (pastEvents.length === 0) {
-      html = errorTemplate({
-        error: 'Our past remains blank, look to the future...'
+      var html = errorTemplate({
+        error: 'Seems like you\'re offline. Please check your internet connection.'
       })
-    } else {
-      html = pastEventsTemplate({
-        events: pastEvents
+      $upcomingEventsList.html(html);
+      $pastEventsList.html(html);
+      function imageIntersectionObserverCallback(imageEntries, observer) {
+        imageEntries.forEach(imgEntry => {
+          if (imgEntry.isIntersecting) {
+            imgEntry.target.setAttribute('src', imgEntry.target.dataset.src);
+            observer.unobserve(imgEntry.target);
+          }
+        })
+      }
+      const imageObserver = new IntersectionObserver(imageIntersectionObserverCallback, { rootMargin: '30px 0px' });
+      imageObserver.POLL_INTERVAL = 200;
+      imageObserver.USE_MUTATION_OBSERVER = false;
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
       })
     }
-    $pastEventsList.html(html);
   }).catch(function (err) {
     console.warn(err);
     $upcomingEventsList.empty();
