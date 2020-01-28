@@ -1,5 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const nodemailer = require('nodemailer');
+const cors = require('cors')({origin: true});
 
 admin.initializeApp(functions.config().firebase);
 
@@ -7,6 +9,32 @@ const db = admin.firestore();
 const settings = { timestampsInSnapshots: true };
 db.settings(settings);
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: process.env.email,
+      pass: process.env.password,
+  }
+});
+
+exports.sendMail = functions.https.onRequest((req, res) => {
+  cors(req, res, () => {
+    
+      const { from, to, subject, message } = req.query;
+
+      const mailOptions = {
+          from, to, subject,
+          html: `<p style="font-size: 22px;">${message}</p>`
+      };
+
+      return transporter.sendMail(mailOptions, (erro, info) => {
+          if(erro){
+              return res.send(erro.toString());
+          }
+          return res.send('Sended');
+      });
+  });    
+});
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
