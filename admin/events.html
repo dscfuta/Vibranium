@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="DSC FUTA" />
+    <meta
+      name="description"
+      content="Developer Student Clubs (DSC)a is a Google Developers program for university students to learn mobile and web development skills."
+    />
+    <meta
+      name="keywords"
+      content="dsc, futa, kelvin kamau,google developers, sub saharan africa, kenya, computer science"
+    />
+    <title>DSC Admin - Events</title>
+    <link rel="icon" href="images/icon.png" type="image/png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+
+  <body class="mdc-typography">
+    <header class="mdc-top-app-bar mdc-top-app-bar--fixed" data-mdc-auto-init="MDCTopAppBar">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <a href="index" class="material-icons mdc-top-app-bar__navigation-icon">home</a>
+          <span class="mdc-top-app-bar__title">Events</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+          <a href="#" id="logoutButton" class="material-icons mdc-top-app-bar__action-item" aria-label="Logout"
+            alt="Logout">exit_to_app</a>
+        </section>
+      </div>
+    </header>
+
+    <div id="wrapper">
+      <div class="mdc-top-app-bar--fixed-adjust">
+        <aside class="mdc-drawer">
+          <div class="mdc-drawer__header">
+            <h3 class="mdc-drawer__title">Admin</h3>
+            <h6 class="mdc-drawer__subtitle" id="userEmailDisplay"></h6>
+          </div>
+          <div class="mdc-drawer__content">
+            <nav class="mdc-list" data-mdc-auto-init="MDCList">
+              <a class="mdc-list-item" href="index.html">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">dashboard</i>
+                <span class="mdc-list-item__text">Dashboard</span>
+              </a>
+              <a class="mdc-list-item mdc-list-item--activated" aria-selected="true" href="#">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">event</i>
+                <span class="mdc-list-item__text">Events</span>
+              </a>
+              <a class="mdc-list-item" href="projects.html">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">code</i>
+                <span class="mdc-list-item__text">Projects</span>
+              </a>
+              <a class="mdc-list-item" href="instructor.html">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>
+                <span class="mdc-list-item__text">Instructors</span>
+              </a>
+              <a class="mdc-list-item" href="tutorials.html">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">book</i>
+                <span class="mdc-list-item__text">Materials</span>
+              </a>
+            </nav>
+          </div>
+        </aside>
+        <main id="main-content">
+          <div class="event-list" id="event-list">
+          </div>
+          <button class="mdc-fab mdc-fab--extended mdc-theme--primary-bg page-primary-action" id="addButton">
+            <span class="material-icons mdc-fab__icon">add</span>
+            <span class="mdc-fab__label">Add Event</span>
+          </button>
+        </main>
+      </div>
+      <!-- /#wrapper -->
+
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+      </a>
+
+      <!-- Delete Event Modal -->
+      <div class="mdc-dialog" role="alertdialog" aria-modal="true" aria-labelledby="delete-dialog-title"
+        aria-describedby="delete-dialog-content" id="delete-dialog">
+        <div class="mdc-dialog__container">
+          <div class="mdc-dialog__surface">
+            <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+            <h2 class="mdc-dialog__title" id="delete-dialog-title"><!--
+           -->Delete Event?<!--
+         --></h2>
+            <div class="mdc-dialog__content" id="delete-dialog-content">
+              Are you sure you want to delete this event?
+            </div>
+            <footer class="mdc-dialog__actions">
+              <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
+                <span class="mdc-button__label">No</span>
+              </button>
+              <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+                <span class="mdc-button__label">Yes</span>
+              </button>
+            </footer>
+          </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+      </div>
+      <!-- /Delete Event Modal -->
+
+      <!-- Create/Edit Event Modal -->
+      <div class="mdc-dialog" role="dialog" aria-modal="true" aria-labelledby="update-dialog-title"
+        aria-describedby="update-dialog-content" id="update-dialog">
+        <div class="mdc-dialog__container form-dialog">
+          <div class="mdc-dialog__surface">
+            <div class="mdc-card__media mdc-card__media--16-9 image-preview" id="eventImagePreview">
+              <div class="image-upload-progress-wrapper">
+                <h2 class="image-upload-progress-text mdc-typography--headline4">0%</h2>
+                <div role="progressbar" class="mdc-linear-progress" id="image-upload-progress">
+                  <div class="mdc-linear-progress__buffering-dots"></div>
+                  <div class="mdc-linear-progress__buffer"></div>
+                  <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                    <span class="mdc-linear-progress__bar-inner"></span>
+                  </div>
+                  <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                    <span class="mdc-linear-progress__bar-inner"></span>
+                  </div>
+                </div>
+              </div>
+              <input type="file" accept="image/*" class="image-file-upload" aria-hidden="true">
+              <div class="image-upload-icon">
+                <i class="material-icons">add_a_photo</i>
+              </div>
+            </div>
+            <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+            <h2 class="mdc-dialog__title" id="update-dialog-title"><!--
+            --><span class="dialog-mode">Add</span> Event<!--
+        --></h2>
+            <div class="mdc-dialog__content" id="update-dialog-content">
+              <div class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">edit</i>
+                <input type="text" id="eventName" class="mdc-text-field__input" required>
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="eventName" class="mdc-floating-label">Event Name</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">event</i>
+                <input type="date" id="eventDate" class="mdc-text-field__input" required>
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="eventDate" class="mdc-floating-label">Event Date</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">alarm</i>
+                <input type="time" id="eventTime" class="mdc-text-field__input" required>
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="eventTime" class="mdc-floating-label">Event Time</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">map</i>
+                <input type="text" id="eventVenue" class="mdc-text-field__input" required>
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="eventVenue" class="mdc-floating-label">Event Venue</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div class="mdc-text-field text-field text-field--textarea mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--with-leading-icon">
+                <div class="mdc-text-field-character-counter">0 / 140</div>
+                <i class="material-icons mdc-text-field__icon">description</i>
+                <textarea id="eventDescription" class="mdc-text-field__input" required maxlength="140"></textarea>
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="eventDescription" class="mdc-floating-label">Event description</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">camera</i>
+                <input type="text" id="eventPhotosURL" class="mdc-text-field__input">
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="eventPhotosURL" class="mdc-floating-label">Event Photos URL</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">movie</i>
+                <input type="text" id="eventVideoURL" class="mdc-text-field__input">
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="eventVideoURL" class="mdc-floating-label">Event Video URL</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                <i class="material-icons mdc-text-field__icon">account_circle</i>
+                <input type="text" id="eventMeetupURL" class="mdc-text-field__input">
+                <div class="mdc-notched-outline">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch">
+                    <label for="eventMeetupURL" class="mdc-floating-label">Event Meetup URL</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+            </div>
+            <footer class="mdc-dialog__actions">
+              <button type="reset" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+                <span class="mdc-button__label">Cancel</span>
+              </button>
+              <button type="submit" class="mdc-button mdc-dialog__button" id="updateButton">
+                <span class="mdc-button__label"><span class="dialog-mode">Add</span></span>
+              </button>
+            </footer>
+          </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+      </div>
+    </div>
+
+    <script type="text/x-handlebars-template" id="event-template">
+      {{#each events}}
+      <div class="mdc-card event-card">
+        <div class="mdc-card__primary-action">
+          <div class="mdc-card__media mdc-card__media--16-9"
+            style="background-image: url({{imageURL}});"></div>
+          <div class="card__content">
+            <!-- <div class="event-card__tags">
+              <span class="tagging intermediate">Intermediate</span>
+            </div> -->
+            <h2 class="card__title mdc-typography--headline6">{{name}}</h2>
+            <h6 class="card__subtitle card__subtitle--with-icon card__subtitle--no-spacing mdc-typography--subtitle2"><i
+                class="material-icons">event</i> {{date}} {{time}}</h6>
+            <h6 class="card__subtitle card__subtitle--with-icon mdc-typography--subtitle2"><i class="material-icons">map</i>
+              {{venue}}</h6>
+            <p class="card__text mdc-typography--body2">{{description}}</p>
+          </div>
+        </div>
+        <div class="mdc-card__actions">
+          <div class="mdc-card__action-buttons">
+            {{#if photosURL}}
+            <a role="button" href="{{photosURL}}" class="mdc-button mdc-card__action mdc-card__action--button">
+              <span class="mdc-button__label">Photos</span>
+            </a>
+            {{/if}}
+            {{#if youtubeURL}}
+            <a role="button" href="{{youtubeURL}}" class="mdc-button mdc-card__action mdc-card__action--button">
+              <span class="mdc-button__label">Videos</span>
+            </a>
+            {{/if}}
+          </div>
+          <div class="mdc-card__action-icons">
+            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon edit-button" title="Edit"
+              data-event-id="{{id}}" aria-label="Edit">edit</button>
+            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon delete-button"
+              title="Delete" data-event-id="{{id}}" aria-label="Delete">delete</button>
+            {{#if meetupURL}}
+            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon menu-button" title="Mode"
+              data-event-id="{{id}}" aria-label="More">more_vert</button>
+            <div class="mdc-menu-surface--anchor">
+              <div class="mdc-menu mdc-menu-surface" tabindex="-1" data-event-id="{{id}}">
+                <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+                  <li data-href="{{meetupURL}}" class="mdc-list-item meetup-link" role="menuitem" target="_blank" role="noopener">
+                    <span class="mdc-list-item__text">Visit Meetup Page</span>
+                    <span class="mdc-list-item__meta"><i class="material-icons">open_in_new</i></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </script>
+    <script type="text/x-handlebars-template" id="spinner-template">
+        <div class="spinner-wrapper">
+          <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </script>
+    <script type="text/x-handlebars-template" id="error-message-template">
+        <div class="message-wrapper">
+            <h1 class="message-icon">:(</h1>
+            <h2 class="message-text">{{error}}</h2>
+        </div>
+    </script>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="js/vendors/firebase-app.js"></script>
+    <script src="js/vendors/firebase-auth.min.js"></script>
+    <script src="js/vendors/firebase-firestore.min.js"></script>
+    <script src="js/vendors/firebase-storage.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/vendors/handlebars.min.js"></script>
+    <!-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/admin.min.js"></script> -->
+    <script src="js/firebase.config.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/material.js"></script>
+    <script src="js/spinner.js"></script>
+    <script src="js/admin/event.js"></script>
+  </body>
+</html>

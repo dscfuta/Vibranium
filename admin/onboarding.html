@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="DSC FUTA" />
+    <meta
+      name="description"
+      content="Developer Student Clubs (DSC)a is a Google Developers program for university students to learn mobile and web development skills."
+    />
+    <meta
+      name="keywords"
+      content="dsc, futa, kelvin kamau,google developers, sub saharan africa, kenya, computer science"
+    />
+    <title>DSC Admin - Dashboard</title>
+    <link rel="icon" href="images/icon.png" type="image/png" />
+    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/admin.css" rel="stylesheet" /> -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@next/webcomponents-loader.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@material/mwc-button@^0.6.0/mwc-button.js?module"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@material/mwc-fab@^0.6.0/mwc-fab.js?module"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@material/mwc-icon@^0.6.0/mwc-icon.js?module"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@material/mwc-checkbox@^0.6.0/mwc-checkbox.js?module"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@material/mwc-radio@^0.6.0/mwc-radio.js?module"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@material/mwc-switch@^0.6.0/mwc-switch.js?module"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@material/mwc-ripple@^0.6.0/mwc-ripple.js?module"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@material/mwc-top-app-bar@^0.6.0/mwc-top-app-bar.js?module"
+    ></script>
+  </head>
+
+  <body class="notDefined">
+    <mwc-top-app-bar>
+      <a class="icon-link" href="/" slot="navigationIcon"
+        ><mwc-icon>home</mwc-icon></a
+      >
+      <span slot="title">Onboarding</span>
+      <a
+        class="icon-link"
+        href="#"
+        id="logoutButton"
+        slot="actionItems"
+        aria-label="Logout"
+        alt="Logout"
+        ><mwc-icon aria-labelledby="logoutButton">logout</mwc-icon></a
+      >
+    </mwc-top-app-bar>
+    <div id="wrapper">
+      <div class="mdc-top-app-bar--fixed-adjust">
+        <aside class="mdc-drawer">
+          <div class="mdc-drawer__header">
+            <h3 class="mdc-drawer__title">Admin</h3>
+            <h6 class="mdc-drawer__subtitle" id="userEmailDisplay"></h6>
+          </div>
+          <div class="mdc-drawer__content">
+            <nav class="mdc-list" data-mdc-auto-init="MDCList">
+              <a class="mdc-list-item" href="index.html">
+                <i
+                  class="material-icons mdc-list-item__graphic"
+                  aria-hidden="true"
+                  >dashboard</i
+                >
+                <span class="mdc-list-item__text">Dashboard</span>
+              </a>
+              <a class="mdc-list-item" href="events.html">
+                <i
+                  class="material-icons mdc-list-item__graphic"
+                  aria-hidden="true"
+                  >event</i
+                >
+                <span class="mdc-list-item__text">Events</span>
+              </a>
+              <a class="mdc-list-item" href="projects.html">
+                <i
+                  class="material-icons mdc-list-item__graphic"
+                  aria-hidden="true"
+                  >code</i
+                >
+                <span class="mdc-list-item__text">Projects</span>
+              </a>
+              <a class="mdc-list-item" href="instructor.html">
+                <i
+                  class="material-icons mdc-list-item__graphic"
+                  aria-hidden="true"
+                  >account_circle</i
+                >
+                <span class="mdc-list-item__text">Instructors</span>
+              </a>
+              <a class="mdc-list-item" href="tutorials.html">
+                <i
+                  class="material-icons mdc-list-item__graphic"
+                  aria-hidden="true"
+                  >book</i
+                >
+                <span class="mdc-list-item__text">Materials</span>
+              </a>
+              <a
+                class="mdc-list-item mdc-list-item--activated"
+                href="onboarding.html"
+                aria-selected="true"
+              >
+                <i
+                  class="material-icons mdc-list-item__graphic"
+                  aria-hidden="true"
+                  >supervisor_account</i
+                >
+                <span class="mdc-list-item__text">Onboarding</span>
+              </a>
+            </nav>
+          </div>
+        </aside>
+        <main id="main-content">
+          <div
+            class="sections-list onboarding-page onboarding-page--active onboarding-page--flex"
+            id="stackList"
+          ></div>
+          <div class="category-info onboarding-page" id="category-info">
+            <div class="mdc-card category-info-card">
+              <div class="top-panel">
+                <div class="top-panel__left">
+                  <button
+                    class="mdc-icon-button material-icons top-panel__back"
+                    aria-label="Back"
+                    id="backButton"
+                  >
+                    chevron_left
+                  </button>
+                  <h1
+                    class="mdc-typography mdc-typography--headline6 top-panel__title"
+                    id="category-name"
+                  >
+                    <!-- Use JS to add category name -->
+                  </h1>
+                </div>
+                <div class="top-panel__right">
+                  <button
+                    class="mdc-button mdc-button--raised top-panel__button"
+                    data-action="email"
+                    data-target="all"
+                    id="compose-button"
+                  >
+                    <div class="mdc-button__ripple"></div>
+                    <i
+                      class="material-icons mdc-button__icon"
+                      aria-hidden="true"
+                      >email</i
+                    >
+                    <span class="mdc-button__label">Compose</span>
+                  </button>
+                </div>
+              </div>
+              <div class="category-card-content">
+                <div class="category-card-content__left">
+                  <ul
+                    class="mdc-list mdc-list--two-line mdc-list--dense category-member-list"
+                    id="categoryMemberList"
+                    role="listbox"
+                  ></ul>
+                </div>
+                <div class="category-card-content__right">
+                  <div class="category-member-details"></div>
+                  <div class="email-compose">
+                    <ul
+                      class="mdc-list mdc-list--two-line mdc-list--non-interactive"
+                      data-no-ripple="true"
+                    >
+                      <li class="mdc-list-item">
+                        <span class="mdc-list-item__graphic material-icons"
+                          >people</span
+                        >
+                        <span class="mdc-list-item__text">
+                          <span
+                            class="mdc-list-item__primary-text"
+                            id="mail-to-name"
+                            >Frontend Web</span
+                          >
+                          <span
+                            class="mdc-list-item__secondary-text"
+                            id="mail-to-description"
+                            >To all members of "Frontend Web"</span
+                          >
+                        </span>
+                      </li>
+                    </ul>
+                    <div
+                      class="mdc-text-field mdc-text-field--textarea mdc-text-field--no-label email-compose__textarea"
+                    >
+                      <textarea
+                        class="mdc-text-field__input"
+                        aria-label="Email to send"
+                        placeholder="Type email contents here..."
+                        id="email-contents"
+                      ></textarea>
+                      <div class="mdc-notched-outline">
+                        <div class="mdc-notched-outline__leading"></div>
+                        <div class="mdc-notched-outline__trailing"></div>
+                      </div>
+                    </div>
+                    <div class="email-compose__actions">
+                      <button
+                        class="mdc-button email-compose__action"
+                        data-action="cancel-email"
+                      >
+                        <div class="mdc-button__ripple"></div>
+                        <span class="mdc-button__label">Cancel</span>
+                      </button>
+                      <button
+                        class="mdc-button mdc-button--raised email-compose__action"
+                        data-action="send-email"
+                      >
+                        <div class="mdc-button__ripple"></div>
+                        <span
+                          class="mdc-button__icon material-icons"
+                          aria-hidden="true"
+                          >send</span
+                        >
+                        <span class="mdc-button__label">Send</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div
+      class="mdc-dialog"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="delete-dialog-title"
+      aria-describedby="delete-dialog-content"
+      id="delete-confirm-dialog"
+    >
+      <div class="mdc-dialog__container">
+        <div class="mdc-dialog__surface">
+          <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+          <h2 class="mdc-dialog__title" id="delete-dialog-title">
+            <!--
+        -->Delete member?<!--
+      -->
+          </h2>
+          <div class="mdc-dialog__content" id="delete-dialog-content">
+            This action cannot be reversed. Kindly take note of the user's
+            details in order to contact them later on, if need be.
+          </div>
+          <footer class="mdc-dialog__actions">
+            <button
+              type="button"
+              class="mdc-button mdc-dialog__button"
+              data-mdc-dialog-action="no"
+            >
+              <span class="mdc-button__label">No</span>
+            </button>
+            <button
+              type="button"
+              class="mdc-button mdc-dialog__button"
+              data-mdc-dialog-action="yes"
+            >
+              <span class="mdc-button__label">Yes</span>
+            </button>
+          </footer>
+        </div>
+      </div>
+      <div class="mdc-dialog__scrim"></div>
+    </div>
+    <div
+      class="mdc-dialog"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="info-dialog-title"
+      aria-describedby="info-dialog-content"
+      id="info-dialog"
+    >
+      <div class="mdc-dialog__container">
+        <div class="mdc-dialog__surface">
+          <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+          <h2 class="mdc-dialog__title" id="info-dialog-title"></h2>
+          <div class="mdc-dialog__content" id="info-dialog-content"></div>
+          <footer class="mdc-dialog__actions">
+            <button
+              type="button"
+              class="mdc-button mdc-dialog__button"
+              data-mdc-dialog-action="close"
+            >
+              <span class="mdc-button__label">Ok</span>
+            </button>
+          </footer>
+        </div>
+      </div>
+      <div class="mdc-dialog__scrim"></div>
+    </div>
+    <div
+      class="mdc-dialog"
+      role="alertdialog"
+      aria-modal="true"
+      aria-label="Processing, please wait..."
+      id="loading-dialog"
+    >
+      <div class="mdc-dialog__container">
+        <div class="mdc-dialog__surface">
+          <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+          <div class="mdc-dialog__content" id="loading-dialog-content">
+            <div class="spinner-wrapper" style="height: unset;">
+              <svg
+                class="spinner"
+                width="32px"
+                height="32px"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  class="path"
+                  fill="none"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  cx="33"
+                  cy="33"
+                  r="30"
+                ></circle>
+              </svg>
+              <span style="margin-left: 16px;">
+                Please wait...
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-dialog__scrim"></div>
+    </div>
+    <script type="text/x-handlebars-template" id="stacks-template">
+      {{#stacks}}
+      <div class="mdc-card section-card stack-card">
+        <div class="mdc-card__primary-action" tabindex="0">
+          <div class="card__content" slot="content">
+            <h2 class="card__title mdc-typography--headline6">{{title}}</h2>
+            <h5 class="card__subtitle mdc-typography--subtitle2">{{description}}</h5>
+            <h1 class="item-count mdc-typography--headline1">{{totalCount}}</h1>
+          </div>
+        </div>
+        <ul class="mdc-list mdc-list--two-line">
+          <li class="mdc-list-item" role="button" data-action="view-category" data-stack="{{key}}" data-category="novice">
+            <span class="mdc-list-item__text">
+              <span class="mdc-list-item__primary-text">Novice</span>
+              <span class="mdc-list-item__secondary-text" id="{{key}}-novice-count">{{noviceCount}}</span>
+            </span>
+            <span class="mdc-list-item__meta material-icons">chevron_right</span>
+          </li>
+          <li class="mdc-list-item-separator"></li>
+          <li class="mdc-list-item" role="button" data-action="view-category" data-stack="{{key}}" data-category="beginner">
+            <span class="mdc-list-item__text">
+              <span class="mdc-list-item__primary-text">Beginner</span>
+              <span class="mdc-list-item__secondary-text" id="{{key}}-beginner-count">{{beginnerCount}}</span>
+            </span>
+            <span class="mdc-list-item__meta material-icons">chevron_right</span>
+          </li>
+          <li class="mdc-list-item-separator"></li>
+          <li class="mdc-list-item" role="button" data-action="view-category" data-stack="{{key}}" data-category="intermediate">
+            <span class="mdc-list-item__text">
+              <span class="mdc-list-item__primary-text">Intermediate</span>
+              <span class="mdc-list-item__secondary-text" id="{{key}}-intermediate-count">{{intermediateCount}}</span>
+            </span>
+            <span class="mdc-list-item__meta material-icons">chevron_right</span>
+          </li>
+        </ul>
+      </div>
+      {{/stacks}}
+    </script>
+    <script type="text/x-handlebars-template" id="member-list-template">
+      {{#members}}
+        <li class="mdc-list-item category-member-list__item" role="option" data-action="select-member" data-member-id="{{id}}">
+          <span class="mdc-list-item__text">
+            <span class="mdc-list-item__primary-text">{{name}}</span>
+            <span class="mdc-list-item__secondary-text"
+              >{{email}}</span
+            >
+          </span>
+          <span class="mdc-list-item__meta material-icons" aria-hidden="true">chevron_right</span>
+        </li>
+        <li role="separator" class="mdc-list-divider"></li>
+      {{/members}}
+    </script>
+    <script type="text/x-handlebars-template" id="member-details-template">
+      <ul
+        class="mdc-list mdc-list--two-line mdc-list--non-interactive"
+        data-no-ripple="true"
+      >
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__graphic material-icons"
+            >account_circle</span
+          >
+          <span class="mdc-list-item__text">
+            <span class="mdc-list-item__primary-text"
+              >{{name}}</span
+            >
+            <span class="mdc-list-item__secondary-text"
+              >Name</span
+            >
+          </span>
+        </li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__graphic material-icons"
+            >email</span
+          >
+          <span class="mdc-list-item__text">
+            <span class="mdc-list-item__primary-text"
+              >{{email}}</span
+            >
+            <span class="mdc-list-item__secondary-text"
+              >Email</span
+            >
+          </span>
+          <span class="mdc-list-item__meta">
+            <button class="mdc-button" data-action="email" data-target="{{id}}">
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">Send Email</span>
+            </button>
+          </span>
+        </li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__graphic material-icons"
+            >merge_type</span
+          >
+          <span class="mdc-list-item__text">
+            <span class="mdc-list-item__primary-text">{{gender}}</span>
+            <span class="mdc-list-item__secondary-text"
+              >Gender</span
+            >
+          </span>
+        </li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__graphic material-icons"
+            >phone</span
+          >
+          <span class="mdc-list-item__text">
+            <span class="mdc-list-item__primary-text"
+              >{{phone}}</span
+            >
+            <span class="mdc-list-item__secondary-text"
+              >Phone Number</span
+            >
+          </span>
+        </li>
+        <li class="mdc-list-item">
+          <span class="mdc-list-item__graphic material-icons"
+            >school</span
+          >
+          <span class="mdc-list-item__text">
+            <span class="mdc-list-item__primary-text"
+              >{{department}}, {{school}}</span
+            >
+            <span class="mdc-list-item__secondary-text"
+              >School</span
+            >
+          </span>
+        </li>
+      </ul>
+      <div class="member-actions">
+        {{#if onWhatsappGroup}}
+        <button class="mdc-button member-actions__item" disabled>
+          <div class="mdc-button__ripple"></div>
+          <i
+            class="material-icons mdc-button__icon"
+            >check</i
+          >
+          <span class="mdc-button__label">Added to WhatsApp</span>
+        </button>
+        {{else}}
+        <button class="mdc-button member-actions__item" data-action="mark-member-as-on-whatsapp" data-member-id="{{id}}">
+          <div class="mdc-button__ripple"></div>
+          <i
+            class="material-icons mdc-button__icon"
+            >group_add</i
+          >
+          <span class="mdc-button__label">Add to WhatsApp</span>
+        </button>
+        {{/if}}
+        <button class="mdc-button mdc-button--raised member-actions__item member-actions__item--delete" data-action="delete-member" data-member-id="{{id}}">
+          <div class="mdc-button__ripple"></div>
+          <i
+            class="material-icons mdc-button__icon"
+            aria-hidden="true"
+            >delete</i
+          >
+          <span class="mdc-button__label">DELETE</span>
+        </button>
+      </div>
+    </script>
+    <script type="text/x-handlebars-template" id="spinner-template">
+      <div class="spinner-wrapper">
+        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+          <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>
+    </script>
+    <script type="text/x-handlebars-template" id="error-message-template">
+      <div class="message-wrapper">
+          <h1 class="message-icon">:(</h1>
+          <h2 class="message-text">{{error}}</h2>
+      </div>
+    </script>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="js/vendors/firebase-app.js"></script>
+    <script src="js/vendors/firebase-auth.min.js"></script>
+    <script src="js/vendors/firebase-firestore.min.js"></script>
+    <script src="js/vendors/firebase-storage.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/vendors/handlebars.min.js"></script>
+    <script src="js/firebase.config.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/mwc.js"></script>
+    <script src="js/material.js"></script>
+    <script src="js/admin/onboarding.js"></script>
+  </body>
+</html>

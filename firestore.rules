@@ -1,0 +1,36 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	function isSignedIn() {
+    	return request.auth.uid != null;
+    }
+    match /events/{event} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    match /instructors/{instructor} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    match /projects/{project} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    match /materials/{material} {
+    	allow read: if true;
+      allow write: if isSignedIn();
+    }
+    match /signups/{document=**} {
+    	allow get: if true;
+      allow list: if isSignedIn();
+      allow write: if true;
+    }
+    match /emails/{document=**} {
+    	allow get: if true;
+      allow list: if isSignedIn();
+      allow write: if true;
+    }
+    match /counts/{document=**} {
+      allow read, write: if isSignedIn();
+    }
+  }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="DSC FUTA"/>
+    <meta name="description"
+          content="Developer Student Clubs (DSC)a is a Google Developers program for university students to learn mobile and web development skills.">
+    <meta name="keywords"
+          content="dsc, futa, kelvin kamau,google developers, sub saharan africa, kenya, computer science"/>
+    <title>DSC Admin - Login</title>
+    <link rel="icon" href="images/icon.png" type="image/png"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+
+  <body class="bg-dark mdc-typography center-content">
+
+    <div class="container">
+      <div class="mdc-card login-card">
+        <div class="login-card-content">
+          <h2 class="mdc-typography--headline6">Login to DSC</h2>
+          <form id="loginForm">
+            <div
+              class="mdc-text-field text-field mdc-text-field--outlined mdc-text-field--with-leading-icon">
+              <i class="material-icons mdc-text-field__icon">account_circle</i>
+              <input type="email" id="inputEmail" class="mdc-text-field__input">
+              <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                  <label for="inputEmail" class="mdc-floating-label">Email</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+            <div
+              class="mdc-text-field text-field demo-text-field-outlined-shaped mdc-text-field--outlined mdc-text-field--with-leading-icon">
+              <i class="material-icons mdc-text-field__icon">lock</i>
+              <input type="password" id="inputPassword" class="mdc-text-field__input">
+              <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                  <label for="inputPassword" class="mdc-floating-label">Password</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+            <button type="submit" class="mdc-button mdc-button--raised login-button">
+              <span class="mdc-button__label">Login</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/vendors/firebase-app.js"></script>
+    <script src="js/vendors/firebase-auth.min.js"></script>
+    <script src="js/vendors/firebase-firestore.min.js"></script>
+    <script src="js/vendors/firebase-storage.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="js/firebase.config.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/material.js"></script>
+  </body>
+
+</html>

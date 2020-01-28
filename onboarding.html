@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DSC onboarding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="DSC University Name"/>
+    <meta name="description" content="Developer Student Clubs (DSC) is a Google Developers program for university students to learn mobile and web development skills.">
+    <meta name="keywords" content="dsc,developer student clubs,google developers, sub saharan africa, students, technology, computer science"/>
+    <link href="css/ionicons.min.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2F5BE7"/>
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="icon" href="images/icon.png" type="image/png"/>
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Material+Icons' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+    .tab{
+        display: none;
+    }
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;  
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+    .step.active {
+        opacity: 1;
+        background-color:#2F5BE7;
+    }
+
+    .step-button {
+        padding: 10px 12px;
+    }
+    input.invalid {
+        background-color: #ffdddd;
+    }
+    .img-onboard {
+        width: 300px;
+    }
+    input.form-control {
+        padding: 15px 20px;
+    }
+    select.form-control {
+        height: 50px;
+        padding: 5px 20px;
+    }
+    </style>
+</head>
+<body class="x-hidden has-sticky-header">
+<nav class="navbar navbar-expand-lg fixed-top custom-menu custom-menu__light">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img class="mr-2" src="images/icon.png" height="35" alt="Image">
+            <h3 class="m-0 section-title">Onboarding</h3>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+        <span class="menu-icon__circle">
+        </span>
+            <span class="menu-icon">
+          <span class="menu-icon__bar"></span>
+          <span class="menu-icon__bar"></span>
+          <span class="menu-icon__bar"></span>
+        </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-lg-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Stories</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<section id="onboarding">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-xs-11 col-lg-offset-5 m-5">
+                 <form id="regForm">
+                    <div class="tab">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img class="img-responsive img-onboard" src="images/onboard.svg" alt="">
+                            <p class="ml-5 m-5 text-center lead">DSC is a Google Developers’ program for University students designed to help them build their mobile, web development & design skills. It is open to any student, ranging from novice developers who are just starting to advanced developers who want to further improve their skills. it also encourages them to make use of the acquired skill sets to solve local business problems around their institution. It is designed to help them build job-ready skills, making them further employable in the future.</p>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input required type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Fullname</label>
+                            <input required type="text" class="form-control" id="name" placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select required class="form-control" id="gender">
+                                <option>Select your gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Phone</label>
+                            <input required type="text" class="form-control" id="phone" placeholder="Phone">
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <p>Academic information</p>
+                        <div class="form-group">
+                            <label for="school">School</label>
+                            <select required class="form-control" id="school">
+                                <option value="">select your school</option>
+                                <option>SEET</option>
+                                <option>SAAT</option>
+                                <option>SET</option>
+                                <option>SMAT</option>
+                                <option>SOS</option>
+                                <option>SHHT</option>
+                                <option>SCOM</option>
+                                <option>SMES</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dept">Department</label>
+                            <input required type="text" class="form-control" id="dept" placeholder="Department">
+                        </div>
+                        <div class="form-group">
+                            <label for="level">Level</label>
+                            <select required class="form-control" id="level">
+                                <option>100</option>
+                                <option>200</option>
+                                <option>300</option>
+                                <option>400</option>
+                                <option>500</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <p>Tecnical information</p>
+                        <div class="form-group">
+                            <label for="stack">What would you like to build or learn?</label>
+                            <small id="stackHelp" class="form-text text-muted">You can send a mail to <a href="mailto:dscfuta@gmail.com">dscfuta@gmail.com</a> if you need direction or call <a href="tel:+2348168678931">08168678931</a>.</small>
+                            <select required class="form-control" size="5" id="stack">
+                                <option value="mobile">Android Development - Java</option>
+                                <option value="web-frontend">Web Frontend - HTML5, CSS3, JS Es6</option>
+                                <option value="web-backend-php">Web Backend - PHP</option>
+                                <option value="web-backend-node">Web Backend - Node Js</option>
+                                <option value="mlai">Machine learning, Data Science, AI - Python</option>
+                                <option value="uiux">UI / UX</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stack">How would you rate your programming knowledge</label>
+                            <select required class="form-control" id="category">
+                                <option value="novice">Novice (I have no idea about programming)</option>
+                                <option value="beginner">Beginner (I understand the basics)</option>
+                                <option value="intermediate">Intermediate ( i can build a basic programme on my own)</option>
+                            </select>
+                        </div>   
+                    </div>
+                    <div class="tab final-tab">
+                        <div class="spinner-wrapper" id="spinner" style="display: none;">
+                            <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                            </svg>
+                        </div>
+                        <div class="message-wrapper" id="errorMessage" style="display: none;">
+                            <h1 class="message-icon">:(</h1>
+                            <h2 class="message-text">An error occured, please try again.</h2>
+                        </div>
+                        <div class="message-wrapper" id="successMessage" style="display: none;">
+                            <h1 class="message-icon">:)</h1>
+                            <h2 class="message-text">Welcome to DSC! We're glad you wish to join us. We'll get back to you soon, keep an eye on your inbox.</h2>
+                        </div>
+                    </div>
+                    <!-- Circles which indicates the steps of the form: -->
+<div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <!-- <span class="step"></span> -->
+</div>
+                    <button type="button" class="hero-button step-button" id="prevBtn" onclick="nextPrev(-1)">
+                        <i class="fas fa-chevron-left"></i>&nbsp;Previous
+                    </button>
+                    <button type="button" class="hero-button step-button" id="nextBtn" onclick="nextPrev(1)">
+                        Next&nbsp;<i class="fas fa-chevron-right"></i>
+                    </button>
+                   </form>
+        </div>
+    </div>
+</section>
+
+<footer class="section-spacer footer-section">
+    <div class="container">
+        <div class="row flex-column-reverse flex-sm-row flex-lg-row">
+            <div class="col-md-4 col-12">
+                <div class="footer-widget first-of-footer-widget">
+                    <img data-src="images/footer-logo.png" class="logo-sm mb-10" alt="DSC FUTA University footer logo">
+                    <p>Copyright &copy; 2019. All Rights Reserved.</p>
+                    <span>Feel free to drop us an email at </span>
+                    <a href="mailto:dscfuta@gmail.com">dscfuta@gmail.com</a>
+                    <ul class="social-list__inline mt-10">
+                        <li>
+                            <a href="https://twitter.com/dscfuta" target="_blank" rel="noreferrer noopener">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/dscfuta" target="_blank" rel="noreferrer noopener">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://developers.google.com/programs/dsc/" target="_blank"
+                                rel="noreferrer noopener">
+                                <i class="fab fa-google"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCtpTYLuusEy-c6yDt0iH7WQ" target="_blank"
+                                rel="noreferrer noopener">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-10">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 col-6">
+                        <div class="footer-widget">
+                            <h4 class="footer-widget__title">Programs</h4>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="https://www.womentechmakers.com/" target="_blank" rel="noreferrer">Women
+                                        Techmakers</a>
+                                </li>
+                                <li>
+                                    <a href="https://developers.google.com/experts/" target="_blank"
+                                        rel="noreferrer">Google Developer Experts</a>
+                                </li>
+                                <li>
+                                    <a href="https://developers.google.com/programs/community/gdg/">Google Developer
+                                        Groups</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <div class="footer-widget">
+                            <h4 class="footer-widget__title">Developers</h4>
+                            <ul>
+                                <li class="list-unstyled">
+                                <li>
+                                    <a href="https://flutter.io/">Learn Flutter</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.youtube.com/user/GoogleDevelopers">Devs Playlist</a>
+                                </li>
+                                <li>
+                                    <a href="https://developer.android.com/dev-summit/community-guidelines/"
+                                        target="_blank" rel="noreferrer">Code of
+                                        conduct</a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/dscfuta/Vibranium/issues/new?template=documentation-bug.md"
+                                        target="_blank" rel="noreferrer">File a bug</a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/dscfuta/Vibranium" target="_blank" rel="noreferrer">View
+                                        source</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<a href="#" id="scroll" style="display: none;"><i class="fas fa-angle-up"></i></a>
+
+<script src="/js/vendors/firebase-app.js"></script>
+<script src="/js/vendors/firebase-firestore.min.js"></script>
+<script src="js/vendors/jquery.min.js"></script>
+<script src="js/vendors/bootstrap.bundle.min.js"></script>
+<script src="js/vendors/jquery.magnific-popup.min.js"></script>
+<script src="js/vendors/jquery.easing.min.js"></script>
+<script src="js/vendors/swiper.min.js"></script>
+<script src="js/firebase.config.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/onboarding.js"></script>
+
+<script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+        
+        function showTab(n) {
+          // This function will display the specified tab of the form...
+          var x = document.getElementsByClassName("tab");
+          x[n].style.display = "block";
+          //... and fix the Previous/Next buttons:
+          // Hide the previous button at the first step
+          // and at the last (status indication) step
+          if (n == 0 || n === x.length - 1) {
+            document.getElementById("prevBtn").style.display = "none";
+          } else {
+            document.getElementById("prevBtn").style.display = "inline";
+          }
+          // Are we at the final step?
+          // Remember, the final tab is for status indication
+          if (n == (x.length - 2)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+            document.getElementById("nextBtn").setAttribute("type", "submit");
+          } else if (n === x.length - 1) {
+            // If we're at the final tab, hide the next button too
+            document.getElementById("nextBtn").style.display = "none";
+          } else {
+            document.getElementById("nextBtn").innerHTML = "Next";
+            document.getElementById("nextBtn").setAttribute("type", "button");
+          }
+          //... and run a function that will display the correct step indicator:
+          fixStepIndicator(n)
+        }
+        
+        function nextPrev(n) {
+          // This function will figure out which tab to display
+          var x = document.getElementsByClassName("tab");
+          // Exit the function if any field in the current tab is invalid:
+          if (n == 1 && !validateForm()) return false;
+          // Hide the current tab:
+          x[currentTab].style.display = "none";
+          // Increase or decrease the current tab by 1:
+          currentTab = currentTab + n;
+          // if you have reached the end of the form...
+          // Remember, the final tab isn't meant to be part of the form
+          // So ignore it by subtracting one
+          if (currentTab >= (x.length - 1)) {
+            // ... the form gets submitted:
+            // document.getElementById("regForm").submit();
+            // Show the indica
+            if (currentTab === x.length - 1) showTab(currentTab);
+            // Prevent default action
+            return false;
+          }
+          // Otherwise, display the correct tab:
+          showTab(currentTab);
+        }
+        
+        function validateForm() {
+          // This function deals with validation of the form fields
+          var x, y, i, valid = true;
+          x = document.getElementsByClassName("tab");
+          y = x[currentTab].getElementsByTagName("input");
+          // A loop that checks every input field in the current tab:
+          for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+              // add an "invalid" class to the field:
+              y[i].className += " invalid";
+              // and set the current valid status to false
+              valid = false;
+            }
+          }
+          // If the valid status is true, mark the step as finished and valid:
+          if (valid) {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+          }
+          return valid; // return the valid status
+        }
+        
+        function fixStepIndicator(n) {
+          // This function removes the "active" class of all steps...
+          var i, x = document.getElementsByClassName("step");
+          for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+          }
+          //... and adds the "active" class on the current step:
+          x[n].className += " active";
+        }
+        </script>
+</body>
+</html>

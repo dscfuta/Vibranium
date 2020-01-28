@@ -38,31 +38,12 @@ RESPONSIVES
   .custom-menu .current {
     color: #2FE7B1;
   }
-  /* team SLIDER */
-  .team-slider__indicators {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    margin-bottom: 0;
-    margin-top: 50px;
-  }
-  .team-slider__indicators .owl-dot {
-    height: 1px;
-    width: 30%;
-    margin: 0;
-  }
   .mfp-close {
-    left: 50% !important;
-    -webkit-transform: translateX(-50%) !important;
-            transform: translateX(-50%) !important;
-    top: auto !important;
-    bottom: -80px !important;
+    left: 50%  ;
+    -webkit-transform: translateX(-50%)  ;
+            transform: translateX(-50%)  ;
+    top: auto  ;
+    bottom: -80px  ;
   }
   .section-screens__inner {
     margin-bottom: 50px;
@@ -80,15 +61,15 @@ RESPONSIVES
             flex-direction: column;
   }
   .input-group .form-control {
-    border: 1px solid #1B2733 !important;
+    border: 1px solid #1B2733  ;
     width: 100%;
     margin-bottom: 10px;
-    border-top-right-radius: 2px !important;
-    border-bottom-right-radius: 2px !important;
+    border-top-right-radius: 2px  ;
+    border-bottom-right-radius: 2px  ;
   }
   .input-group .btn {
-    border-top-left-radius: 2px !important;
-    border-bottom-left-radius: 2px !important;
+    border-top-left-radius: 2px  ;
+    border-bottom-left-radius: 2px  ;
   }
   .workshops-single {
     margin-bottom: 40px;
