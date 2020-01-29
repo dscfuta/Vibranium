@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const nodemailer = require('nodemailer');
-const cors = require('cors')({origin: true});
+const nodemailer = require("nodemailer");
+const cors = require("cors")({ origin: true });
 
 admin.initializeApp(functions.config().firebase);
 
@@ -10,33 +10,38 @@ const settings = { timestampsInSnapshots: true };
 db.settings(settings);
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-      user: process.env.email,
-      pass: process.env.password,
+    user: functions.config().mailer.user,
+    pass: functions.config().mailer.pass
   }
 });
 
 exports.sendMail = functions.https.onRequest((req, res) => {
   cors(req, res, () => {
-    
-      const { from, to, subject, message } = req.query;
+    const { from, to, subject, message } = req.query;
 
-      const mailOptions = {
-          from, to, subject,
-          html: `<p style="font-size: 22px;">${message}</p>`
-      };
+    const mailOptions = {
+      from,
+      to,
+      subject,
+      html: `<p style="font-size: 22px;">${message}</p>`
+    };
 
-      return transporter.sendMail(mailOptions, (erro, info) => {
-          if(erro){
-              return res.send(erro.toString());
-          }
-          return res.send('Sended');
+    return transporter.sendMail(mailOptions, (erro, info) => {
+      if (erro) {
+        return res.status(500).send({
+          success: false,
+          error: erro.toString()
+        });
+      }
+      return res.send({
+        success: true,
+        error: null
       });
-  });    
+    });
+  });
 });
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
 
 const isDelete = change => change.before.exists && !change.after.exists;
 const isCreate = change => !change.before.exists && change.after.exists;
