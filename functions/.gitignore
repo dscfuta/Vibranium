@@ -1,3 +1,4 @@
 node_modules/
 .env
 firestore-debug.log
+.runtimeconfig.json
