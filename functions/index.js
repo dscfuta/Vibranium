@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const nodemailer = require("nodemailer");
 const cors = require("cors")({ origin: true });
+const mailService = require('./mailService');
 
 admin.initializeApp(functions.config().firebase);
 
@@ -9,37 +9,11 @@ const db = admin.firestore();
 const settings = { timestampsInSnapshots: true };
 db.settings(settings);
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: functions.config().mailer.user,
-    pass: functions.config().mailer.pass
-  }
-});
-
 exports.sendMail = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    const { from, to, subject, message } = req.query;
-
-    const mailOptions = {
-      from,
-      to,
-      subject,
-      html: `<p style="font-size: 22px;">${message}</p>`
-    };
-
-    return transporter.sendMail(mailOptions, (erro, info) => {
-      if (erro) {
-        return res.status(500).send({
-          success: false,
-          error: erro.toString()
-        });
-      }
-      return res.send({
-        success: true,
-        error: null
-      });
-    });
+  cors(req, res, async () => {
+    const user = functions.config().mailer.user;
+    const pass = functions.config().mailer.pass;
+    await mailService.send(req, res, {user, pass });
   });
 });
 
