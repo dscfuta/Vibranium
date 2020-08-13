@@ -2,6 +2,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -729,8 +730,24 @@ border-radius: 25px;
 .custom-menu .nav-item .nav-link:hover {
   color: #1B2733;
 }
-.nav-item{
+
+@media screen and (max-width: 992px) {
+  .custom-menu .nav-item.dropdown {
+    padding-top: 10px;
+  }
+  
+  .custom-menu .nav-item.dropdown .nav-link {
+    padding: 0 15px;
+  }
+  .custom-menu .nav-item.dropdown .dropdown-menu {
+    border: 0;
+  }
+}
+
+.nav-item,
+.dropdown-menu a{
   font-weight: bold;
+  color: #637282;
 }
 .custom-menu__light {
   background: #fff;
