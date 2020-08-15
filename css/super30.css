@@ -2,46 +2,22 @@
     font-weight: bold;
     transition: color 0.3s linear;
 }
-.navbar a.color-white {
-    color: #FFF;
-}
-
 
 /* for the card grid */
-.cards-grid {
-    position: relative;
-    top: 50px;
+.card.hovercard {
+    max-width: 350px;
+    margin: 0 auto;
 }
-
-/*  */
-@media screen and (max-width: 577px) {
-    .card.hovercard .cardheader {
-        height: 65px;
-    }
-
-    .card.hovercard .avatar img {
-        width: 50px;
-        height: 50px;
-        position: relative;
-        top: 25px;
-    }
-    .card.hovercard .info {
-        margin-top: 25px;
-        line-height: 0.5;
-    }
-    .card.hovercard .info .title h5 {
-        font-size: 0.8rem;
-    }
-    .card.hovercard .info .title p {
-        font-size: 0.75rem;
-        margin-bottom: 8px;
-        line-height: 14px;
-    }
-    .card.hovercard .info .desc {
-        font-size: 0.7rem;
-        line-height: 15px;
-    }
+.card.hovercard .info .title > p {
+    font-size:0.9rem;
+    margin-bottom: 10px;
+    line-height: 14px;
 }
+.card.hovercard .info .title .stack,
+.card.hovercard .info .title .department{
+    line-height: 8px;
+}
+/* for the pagination */
 
 /* for the scroll up  */
 #scroll {

@@ -106,7 +106,7 @@ p {
   padding-bottom: 100px;
 }
 
-.container {
+.custom-menu>.container{
   max-width: 1100px;
   width: 100%;
   padding-right: 20px;
@@ -733,7 +733,7 @@ border-radius: 25px;
 
 @media screen and (max-width: 992px) {
   .custom-menu .nav-item.dropdown {
-    padding-top: 10px;
+    padding: 20px 0;
   }
   
   .custom-menu .nav-item.dropdown .nav-link {
@@ -1320,6 +1320,8 @@ hr{
   height: 100px;
   max-width: 100px;
   max-height: 100px;
+  object-fit: cover;
+  object-position: center;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -1353,10 +1355,7 @@ hr{
   text-overflow: ellipsis;
 }
 .card.hovercard .bottom{
-  padding: 0 20px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 5px auto;
 }
 .card.hovercard .bottom ul li a i{
   color: #2F5BE7;
@@ -1434,9 +1433,9 @@ hr{
   margin-right: 15px;
 }
 
-.social-list__inline li:last-of-type {
+/* .social-list__inline li:last-of-type {
   margin: 0;
-}
+} */
 
 .social-list__inline li a {
   color: #1B2733;
