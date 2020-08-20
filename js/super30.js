@@ -1,70 +1,77 @@
+// variables
+let usersData;
+//UI variables
+const stackSelect = document.getElementById("stack");
+const cardsContainer = document.getElementById('card-row');
+
+
 // functions 
 // to render the users
 const renderUsers = () => {
   //I dowload the tsv file of the document online and converted it to json for it to be usable
 
-// get the file
-const fetchFile =async (url) => {
-  const res = await fetch(url);
+  // get the file
+  const fetchFile =async (url) => {
+    const res = await fetch(url);
 
-  const file = await res.text();
+    const file = await res.text();
 
-  return file;
+    return file;
+  }
+
+  fetchFile("./DSCfuta  Super 30 (Responses) - Form Responses 1.tsv")
+  // then convert it to JSON
+  .then(fileInTSV => csvToJSON(fileInTSV))
+  // then pass the JSON data to the function that will use it
+  .then(fileinJSON => useData(fileinJSON))
+  .catch(err => console.log(err));
+
 }
-
-
-fetchFile("./DSCfuta  Super 30 (Responses) - Form Responses 1.tsv")
-// then convert it to JSON
-.then(fileInTSV => csvToJSON(fileInTSV))
-// then pass the JSON data to the function that will use it
-.then(fileinJSON => useData(fileinJSON))
-.catch(err => console.log(err));
-
-
 
 //convert TSV to JSON
 const csvToJSON = (tsv) => {
 
-    let lines = tsv.split("\n"); //split each line into an array
-    
-    let result = [];
+  const lines = tsv.split("\n"); //split each line into an array
   
-    let headers=lines[0].split("\t"); //get the headings
+  const result = [];
+
+  const headers=lines[0].split("\t"); //get the headings
 
 
-    lines.forEach((line, index) => {
-      if (index === 0) {
-        return
-      }
-      // for each line
-      let obj = {};  //create an object
-      
-      let currentLine = line.split("\t"); //split each line with comma
+  lines.forEach((line, index) => {
+    if (index === 0) {
+      return
+    }
+    // for each line
+    const obj = {};  //create an object
+    
+    const currentLine = line.split("\t"); //split each line with comma
 
-      // for each header, get the corresponding value and match it
-      headers.forEach((header, index) => {
-          obj[header] = currentLine[index];
-      })
-
-      // push the current object when done
-      result.push(obj)
+    // for each header, get the corresponding value and match it
+    headers.forEach((header, index) => {
+        obj[header] = currentLine[index];
     })
 
- 
-    //return result; //JavaScript object
-    return JSON.stringify(result); //JSON
+    // push the current object when done
+    result.push(obj)
+  })
+
+  usersData = result;
+  //return result; //JavaScript object
+  return result; //JSON
 }
 
-
+// use the JSON data passed
 const useData = (data) => {
-
-  const cardsContainer = document.getElementById('card-row');
-  
+  // init cards variable
   let cards = '';
 
-  const usersData = JSON.parse(data);
+  // empty the cards container
+  cardsContainer.innerHTML = '';
 
-  console.log(usersData)  
+  const usersData = data;
+
+  // console.log(usersData)  
 
   usersData.forEach((userData) => {
     // console.log(userData)
@@ -121,10 +128,54 @@ const useData = (data) => {
   cardsContainer.innerHTML = cards;
 }
 
+// when the stack is chosen
+const onStackChange = (event) => {
+  // get the selected stack
+  const selectedStack = event.target.value;
+
+  // variables for the selected users
+  let selectedUsers;
+
+  // get the filtered array of users data
+  selectedUsers = selectUsersFromStack(selectedStack);
+
+  // pass the selected users to the userData function for rendering
+  useData(selectedUsers);
 }
 
+// select users according to passed stack
+const selectUsersFromStack = (stack) => { 
+  let selectedUsers; 
 
+  // if a stack is selected
+  if (['Web', 'AI and ML', 'Mobile','Data Science'].includes(stack)) {
+    // filter the users based on stack
+    selectedUsers = usersData.filter((userData) => {
+      // return the userData that matches with the passed stack
+      return userData['Which Stack are you'] === stack;
+    })
+  }
+  // if others is selected
+  else if (stack === "Others") {
+    // filter the users based on stack
+    selectedUsers = usersData.filter((userData) => {
+      // return the userData that matches with the passed stack
+      return !(['Web', 'AI and ML', 'Mobile','Data Science'].includes(userData['Which Stack are you']));
+    })
+  }
+  // if all is selected
+  else {
+    selectedUsers = usersData;
+  }
+
+  console.log(stack, selectedUsers);
+  // return the selected users
+  return selectedUsers;
+}
 
 // event listeners
 // when the page loads, document should render the users
-document.addEventListener("DOMContentLoaded", renderUsers)
+document.addEventListener("DOMContentLoaded", renderUsers);
+
+// when a stack is chosen from the select
+stackSelect.addEventListener("change", onStackChange);

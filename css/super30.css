@@ -3,7 +3,16 @@
     transition: color 0.3s linear;
 }
 
+/* for the stacks dropdown */
+.stacks {
+    max-width: 400px;
+}
+
+
 /* for the card grid */
+.cards-grid .row {
+    justify-content: center;
+}
 .card.hovercard {
     max-width: 350px;
     margin: 0 auto;
