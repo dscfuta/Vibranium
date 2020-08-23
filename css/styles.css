@@ -1320,12 +1320,13 @@ hr{
   height: 100px;
   max-width: 100px;
   max-height: 100px;
-  object-fit: cover;
+  object-fit: scale-down;
   object-position: center;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
+  /* -webkit-border-radius: 50%;
+  -moz-border-radius: 50%; */
   border-radius: 50%;
   border: 5px solid rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.89);
 }
 
 .card.hovercard .info {

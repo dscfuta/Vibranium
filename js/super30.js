@@ -74,7 +74,7 @@ const useData = (data) => {
   // console.log(usersData)  
 
   usersData.forEach((userData) => {
-    // console.log(userData)
+    
     const items = {
       fullname: userData['Full Name'],
       stack: userData['Which Stack are you'],
@@ -84,12 +84,12 @@ const useData = (data) => {
       image_url: userData['Your Image (your image will be Published alongside your bio)']
     }
 
-    // console.log(items)
+    console.log(items.fullname, ": ", items.image_url);
     cards += `<div class="my-3 col-sm-6 col-md-4 col-lg-3 card-item">
     <div class="card hovercard">
         <div class="cardheader"></div>
         <div class="avatar">
-            <img src="./images/assets/team/avatar.png" alt="lead avatar" src="src/images/assets/team/avatar.png">
+            <img src="${items.image_url}" src="src/images/assets/team/avatar.png">
         </div>
         <div class="info">
             <div class="title">
