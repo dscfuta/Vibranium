@@ -17,6 +17,16 @@
     max-width: 350px;
     margin: 0 auto;
 }
+.card.hovercard .avatar img {
+    width: 140px;
+    height: 140px;
+    max-width: 200px;
+    max-height: 200px;
+   
+}
+.card.hovercard .avatar {
+    top: -70px;
+}
 .card.hovercard .info .title > p {
     font-size:0.9rem;
     margin-bottom: 10px;

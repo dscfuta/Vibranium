@@ -1,8 +1,10 @@
 // variables
-let usersData;
+let usersData, paginationState, selectedUsers, pageData;
 //UI variables
 const stackSelect = document.getElementById("stack");
 const cardsContainer = document.getElementById('card-row');
+// pagination tab
+const pageNav = document.getElementById('page-tab-parent');
 
 
 // functions 
@@ -57,8 +59,66 @@ const csvToJSON = (tsv) => {
   })
 
   usersData = result;
+
+  selectedUsers = usersData;
+  // set pagination state
+  paginationState = {
+    'data': selectedUsers,
+    'currentPage':1,
+    'cardsPerPage': 8
+  };
+
   //return result; //JavaScript object
   return result; //JSON
+}
+
+// when the stack is chosen
+const onStackChange = (event) => {
+  // get the selected stack
+  const selectedStack = event.target.value;
+
+  // variables for the selected users
+  // let selectedUsers;
+
+  // get the filtered array of users data
+  selectedUsers = selectUsersFromStack(selectedStack);
+
+  // pass the selected users to the userData function for rendering
+  useData(selectedUsers);
+}
+
+// select users according to passed stack
+const selectUsersFromStack = (stack) => { 
+  let selectedUsers; 
+
+  // if a stack is selected
+  if (['Web', 'AI and ML', 'Mobile','Data Science'].includes(stack)) {
+    // filter the users based on stack
+    selectedUsers = usersData.filter((userData) => {
+      // return the userData that matches with the passed stack
+      return userData['Which Stack are you'] === stack;
+    })
+  }
+  // if others is selected
+  else if (stack === "Others") {
+    // filter the users based on stack
+    selectedUsers = usersData.filter((userData) => {
+      // return the userData that matches with the passed stack
+      return !(['Web', 'AI and ML', 'Mobile','Data Science'].includes(userData['Which Stack are you']));
+    })
+  }
+  // if all is selected
+  else {
+    selectedUsers = usersData;
+  }
+
+  paginationState.currentPage = 1;
+
+  pageData.noOfPages = Math.ceil(selectedUsers.length/paginationState.cardsPerPage)
+
+  console.log(stack, selectedUsers);
+  // return the selected users
+  return selectedUsers;
 }
 
 // use the JSON data passed
@@ -69,9 +129,11 @@ const useData = (data) => {
   // empty the cards container
   cardsContainer.innerHTML = '';
 
-  const usersData = data;
+  // get pagination data
+  pageData = pagination(paginationState,data)
 
-  // console.log(usersData)  
+  // get the data
+  const usersData = pageData.cardList;
 
   usersData.forEach((userData) => {
     
@@ -84,12 +146,12 @@ const useData = (data) => {
       image_url: userData['Your Image (your image will be Published alongside your bio)']
     }
 
-    console.log(items.fullname, ": ", items.image_url);
+    // console.log(items.fullname, ": ", items.image_url);
     cards += `<div class="my-3 col-sm-6 col-md-4 col-lg-3 card-item">
     <div class="card hovercard">
         <div class="cardheader"></div>
         <div class="avatar">
-            <img src="${items.image_url}" src="src/images/assets/team/avatar.png">
+            <img src="./images/assets/team/avatar.png" src="src/images/assets/team/avatar.png">
         </div>
         <div class="info">
             <div class="title">
@@ -126,56 +188,98 @@ const useData = (data) => {
 
   // insert it into the DOM
   cardsContainer.innerHTML = cards;
+
+  // create pagination
+  createPageTabs(pageData.noOfPages);
 }
 
-// when the stack is chosen
-const onStackChange = (event) => {
-  // get the selected stack
-  const selectedStack = event.target.value;
+// for the pagination
+const pagination = (state, data) => {
+  const userData = data, 
+  currentPage = state.currentPage, 
+  cardsPerPage = state.cardsPerPage;
 
-  // variables for the selected users
-  let selectedUsers;
+  // the starting and ending index
+  let cardListStart = (currentPage - 1) * cardsPerPage;
+  let cardListEnd = cardListStart + cardsPerPage;
 
-  // get the filtered array of users data
-  selectedUsers = selectUsersFromStack(selectedStack);
 
-  // pass the selected users to the userData function for rendering
+  // trim the cards
+  let cardList = userData.slice(cardListStart, cardListEnd);
+  
+  // get the number of pages
+  let noOfPages = Math.ceil(data.length/cardsPerPage);
+
+  return {
+    cardList,
+    noOfPages
+  }
+}
+
+// create the pagination tabs
+const createPageTabs = (noOfPages) => {
+  // get the wrapping ul and the last li
+  const parent = document.getElementById('page-tab-parent');
+
+  let tabs = '',
+  prevTab = `
+  <li class="page-item">
+    <a class="page-link prev-page" id="prev-page-link" href="#" aria-disabled="false">&laquo;</a>
+  </li>`, 
+  nextTab =`
+  <li class="page-item" id="next-page">
+    <a class="page-link next-page" id="next-page-link" href="#">&raquo;</a>
+  </li>`;
+
+  for (let i=1; i <= noOfPages; i++) {
+    // if the particular tab is a the current page, make it active
+    tabs += i===paginationState.currentPage? `
+    <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
+    ` :`
+    <li class="page-item"><a class="page-link" href="#">${i}</a></li>
+    `;
+  }
+
+  if (paginationState.currentPage <= 1) {
+    // if current page is the first, disabled the previous tab
+   prevTab= `
+    <li class="page-item disabled">
+      <a class="page-link prev-page" id="prev-page-link" href="#" aria-disabled="true">&laquo;</a>
+    </li>`
+  }  
+  if (paginationState.currentPage >= noOfPages) {
+    // if current page is the last, disabled the next tab
+    nextTab = `
+    <li class="page-item disabled" id="next-page">
+      <a class="page-link next-page" id="next-page-link" href="#">&raquo;</a>
+    </li>`
+  }
+  // reset parent inner HTML
+  parent.innerHTML = `${prevTab} ${tabs} ${nextTab}`
+}
+
+const goToPage = (e) => {
+  // prevent default linking
+  e.preventDefault();
+
+  const tab = e.target.closest('a');
+
+  if (tab.id === 'next-page-link') {
+    paginationState.currentPage ++;
+  }else if (tab.id === 'prev-page-link') {
+    paginationState.currentPage --;
+  }else {
+    paginationState.currentPage = Number(tab.textContent);
+  }
+
   useData(selectedUsers);
 }
-
-// select users according to passed stack
-const selectUsersFromStack = (stack) => { 
-  let selectedUsers; 
-
-  // if a stack is selected
-  if (['Web', 'AI and ML', 'Mobile','Data Science'].includes(stack)) {
-    // filter the users based on stack
-    selectedUsers = usersData.filter((userData) => {
-      // return the userData that matches with the passed stack
-      return userData['Which Stack are you'] === stack;
-    })
-  }
-  // if others is selected
-  else if (stack === "Others") {
-    // filter the users based on stack
-    selectedUsers = usersData.filter((userData) => {
-      // return the userData that matches with the passed stack
-      return !(['Web', 'AI and ML', 'Mobile','Data Science'].includes(userData['Which Stack are you']));
-    })
-  }
-  // if all is selected
-  else {
-    selectedUsers = usersData;
-  }
-
-  console.log(stack, selectedUsers);
-  // return the selected users
-  return selectedUsers;
-}
-
 // event listeners
 // when the page loads, document should render the users
 document.addEventListener("DOMContentLoaded", renderUsers);
 
 // when a stack is chosen from the select
 stackSelect.addEventListener("change", onStackChange);
+
+// when a pagination link is clicked
+pageNav.addEventListener('click', goToPage)
