@@ -151,7 +151,7 @@ const useData = (data) => {
     <div class="card hovercard">
         <div class="cardheader"></div>
         <div class="avatar">
-            <img src="./images/assets/team/avatar.png" src="src/images/assets/team/avatar.png">
+            <img src="${items.image_url}" src="src/images/assets/team/avatar.png">
         </div>
         <div class="info">
             <div class="title">
