@@ -16,13 +16,14 @@
 .card.hovercard {
     max-width: 350px;
     margin: 0 auto;
+    height: 100%;
 }
 .card.hovercard .avatar img {
     width: 140px;
     height: 140px;
-    max-width: 200px;
-    max-height: 200px;
-   
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: fill;
 }
 .card.hovercard .avatar {
     top: -70px;
@@ -36,7 +37,6 @@
 .card.hovercard .info .title .department{
     line-height: 8px;
 }
-/* for the pagination */
 
 /* for the scroll up  */
 #scroll {

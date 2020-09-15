@@ -143,17 +143,17 @@ const useData = (data) => {
       department: userData['Department '],
       level: userData['Level'],
       bio: userData['Your Bio'],
-      image_url: userData['Your Image (your image will be Published alongside your bio)']
+      image_url: userData['image_url']
     }
 
-    // console.log(items.fullname, ": ", items.image_url);
+    console.log(items.fullname, ": ", items.image_url);
     cards += `<div class="my-3 col-sm-6 col-md-4 col-lg-3 card-item">
     <div class="card hovercard">
         <div class="cardheader"></div>
         <div class="avatar">
-            <img src="${items.image_url}" src="src/images/assets/team/avatar.png">
+            <img src="${items.image_url}" src="../images/assets/team/avatar.png" >
         </div>
-        <div class="info">
+        <div class="info mb-3">
             <div class="title">
                 <h5>${items.fullname}</h5>
                 <p >
@@ -163,26 +163,7 @@ const useData = (data) => {
             </div>
             <div class="desc">${items.bio}</div>
         </div>
-        <div class="bottom">
-            <ul class="social-list__inline mt-4">
-                <li>
-                    <a href="#" target="_blank" rel="noopener">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" target="_blank" rel="noopener">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" target="_blank" rel="noopener">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </li>
-            </ul>
         </div>
-      </div>
     </div>`;
   })
 
@@ -273,6 +254,9 @@ const goToPage = (e) => {
   }
 
   useData(selectedUsers);
+
+  // scroll up
+  scrollTo(0,0);
 }
 // event listeners
 // when the page loads, document should render the users
