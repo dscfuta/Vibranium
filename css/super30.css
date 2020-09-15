@@ -11,7 +11,7 @@
 
 /* for the card grid */
 .cards-grid .row {
-    justify-content: center;
+    /* justify-content: center; */
 }
 .card.hovercard {
     max-width: 350px;
