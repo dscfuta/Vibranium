@@ -10,24 +10,35 @@ const pageNav = document.getElementById('page-tab-parent');
 // functions 
 // to render the users
 const renderUsers = () => {
-  //I dowload the tsv file of the document online and converted it to json for it to be usable
-
   // get the file
   const fetchFile =async (url) => {
     const res = await fetch(url);
+
+    if (res.status === 404) {
+      throw new Error('Unable to get users\' data');
+    }
 
     const file = await res.text();
 
     return file;
   }
 
-  fetchFile("./DSCfuta  Super 30 (Responses) - Form Responses 1.tsv")
+  fetchFile("./DSCfuta  Super 30 (Responses) - Form Response 1.tsv")
   // then convert it to JSON
   .then(fileInTSV => csvToJSON(fileInTSV))
   // then pass the JSON data to the function that will use it
   .then(fileinJSON => useData(fileinJSON))
-  .catch(err => console.log(err));
+  .catch(err => renderError(err));
 
+}
+
+const renderError = (error) => {
+  console.log(error);
+
+  cardsContainer.innerHTML = `<div class="message-wrapper">
+  <h1 class="message-icon">:(</h1>
+  <h2 class="message-text">${error}</h2>
+  </div>`;
 }
 
 //convert TSV to JSON
