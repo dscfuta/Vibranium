@@ -1,11 +1,14 @@
 {
   "hosting": {
+    "redirects": [
+      {
+        "source": "/solution-challenge",
+        "destination": "https://forms.gle/G6SEP69X13Aai4Dq8",
+        "type": 302
+      }
+    ],
     "public": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   },
   "firestore": {
     "rules": "firestore.rules",
