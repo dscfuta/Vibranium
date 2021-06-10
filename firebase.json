@@ -2,8 +2,8 @@
   "hosting": {
     "redirects": [
       {
-        "source": "/solution-challenge",
-        "destination": "https://forms.gle/G6SEP69X13Aai4Dq8",
+        "source": "/resume_writing",
+        "destination": "https://dsc.community.dev/e/m9guvy/",
         "type": 302
       }
     ],
