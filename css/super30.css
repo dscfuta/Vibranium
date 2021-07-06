@@ -1,0 +1,43 @@
+.navbar-brand {
+    font-weight: bold;
+    transition: color 0.3s linear;
+}
+
+/* for the stacks dropdown */
+.stacks {
+    max-width: 400px;
+}
+
+/* for the card grid */
+.cards-grid .row {
+    /* justify-content: center; */
+}
+.card.hovercard {
+    max-width: 350px;
+    margin: 0 auto;
+    height: 100%;
+}
+.card.hovercard .avatar img {
+    width: 140px;
+    height: 140px;
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: fill;
+}
+.card.hovercard .avatar {
+    top: -70px;
+}
+.card.hovercard .info .title > p {
+    font-size:0.9rem;
+    margin-bottom: 10px;
+    line-height: 14px;
+}
+.card.hovercard .info .title .stack,
+.card.hovercard .info .title .department{
+    line-height: 8px;
+}
+
+/* for the scroll up  */
+#scroll {
+    display: block;
+}

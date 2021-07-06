@@ -2,6 +2,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -105,7 +106,7 @@ p {
   padding-bottom: 100px;
 }
 
-.container {
+.custom-menu>.container{
   max-width: 1100px;
   width: 100%;
   padding-right: 20px;
@@ -729,8 +730,24 @@ border-radius: 25px;
 .custom-menu .nav-item .nav-link:hover {
   color: #1B2733;
 }
-.nav-item{
+
+@media screen and (max-width: 992px) {
+  .custom-menu .nav-item.dropdown {
+    padding: 20px 0;
+  }
+  
+  .custom-menu .nav-item.dropdown .nav-link {
+    padding: 0 15px;
+  }
+  .custom-menu .nav-item.dropdown .dropdown-menu {
+    border: 0;
+  }
+}
+
+.nav-item,
+.dropdown-menu a{
   font-weight: bold;
+  color: #637282;
 }
 .custom-menu__light {
   background: #fff;
@@ -1303,10 +1320,13 @@ hr{
   height: 100px;
   max-width: 100px;
   max-height: 100px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
+  object-fit: scale-down;
+  object-position: center;
+  /* -webkit-border-radius: 50%;
+  -moz-border-radius: 50%; */
   border-radius: 50%;
   border: 5px solid rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.89);
 }
 
 .card.hovercard .info {
@@ -1336,10 +1356,7 @@ hr{
   text-overflow: ellipsis;
 }
 .card.hovercard .bottom{
-  padding: 0 20px;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 5px auto;
 }
 .card.hovercard .bottom ul li a i{
   color: #2F5BE7;
@@ -1417,9 +1434,9 @@ hr{
   margin-right: 15px;
 }
 
-.social-list__inline li:last-of-type {
+/* .social-list__inline li:last-of-type {
   margin: 0;
-}
+} */
 
 .social-list__inline li a {
   color: #1B2733;
